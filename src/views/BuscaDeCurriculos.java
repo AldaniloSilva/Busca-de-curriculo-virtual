@@ -5,6 +5,10 @@
  */
 package views;
 
+//import javax.swing.*;
+import java.awt.Dialog;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author BRUNOSILVA
@@ -16,19 +20,37 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
      */
     public BuscaDeCurriculos() {
         initComponents();
-        
-        cBoxOpcoesBusca1.addItem("Nome");
+        this.setLocationRelativeTo(null);        
+
+        cBoxOpcoesBusca1.addItem("Nomes");
         cBoxOpcoesBusca1.addItem("Cargo");
         cBoxOpcoesBusca1.addItem("Cidade");
         cBoxOpcoesBusca1.addItem("Escolaridade");
-        
-        cBoxOpcoesBusca2.addItem("Nome");
+
+        cBoxOpcoesBusca2.addItem("Nomes");
         cBoxOpcoesBusca2.addItem("Cargo");
         cBoxOpcoesBusca2.addItem("Cidade");
         cBoxOpcoesBusca2.addItem("Escolaridade");
-        
+
+        cBoxOpcoesBooleano3.addItem("IGUAL");
+        cBoxOpcoesBooleano3.addItem("DIFERENTE DE");
+
+        cBoxOpcoesBooleano4.addItem("IGUAL");
+        cBoxOpcoesBooleano4.addItem("DIFERENTE");
+
+        cBoxOpcoesBooleano5.addItem("");
+        cBoxOpcoesBooleano5.addItem("E");
+        cBoxOpcoesBooleano5.addItem("OU");
+
         txtNumInf.setValue(15);
         txtNumSup.setValue(50);
+
+        txtNumInf.setEnabled(false);
+        txtNumSup.setEnabled(false);
+
+//       if (jCheckBox1.isSelected()){
+//           JOptionPane.showMessageDialog(null,"Selecionado");
+//       }
     }
 
     /**
@@ -42,22 +64,29 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
 
         btnConfigPasta = new javax.swing.JButton();
         btnConfigPasta1 = new javax.swing.JButton();
-        cBoxOpcoesBusca1 = new javax.swing.JComboBox<>();
-        txtBusca1 = new javax.swing.JTextField();
-        cBoxOpcoesBusca2 = new javax.swing.JComboBox<>();
-        txtBusca2 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txtNumInf = new javax.swing.JSpinner();
         jLabel5 = new javax.swing.JLabel();
         txtNumSup = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        gp_Filtro2 = new javax.swing.JPanel();
+        cBoxOpcoesBusca2 = new javax.swing.JComboBox<>();
+        txtBusca2 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        cBoxOpcoesBooleano4 = new javax.swing.JComboBox<>();
+        gb_Filtro1 = new javax.swing.JPanel();
+        cBoxOpcoesBusca1 = new javax.swing.JComboBox<>();
+        txtBusca3 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        cBoxOpcoesBooleano3 = new javax.swing.JComboBox<>();
+        cBoxOpcoesBooleano5 = new javax.swing.JComboBox<>();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tela de Pesquisa");
 
         btnConfigPasta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icons8-ajuda-40.png"))); // NOI18N
         btnConfigPasta.setSelected(true);
@@ -74,30 +103,6 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
                 btnConfigPasta1ActionPerformed(evt);
             }
         });
-
-        cBoxOpcoesBusca1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cBoxOpcoesBusca1ActionPerformed(evt);
-            }
-        });
-
-        cBoxOpcoesBusca2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cBoxOpcoesBusca2ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("Lista de Opções 1");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setText("Lista de Opções 2");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setText("Digitar busca referente a lista de opções 1");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setText("Digitar busca referente a lista de opções 2");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Faixa Etária");
@@ -119,104 +124,251 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icons8-pesquisa-propriedade-40.png"))); // NOI18N
         jButton1.setText("Pesquisar");
 
+        gp_Filtro2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Filtro 2", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+
+        cBoxOpcoesBusca2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cBoxOpcoesBusca2ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setText("Listar por:");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setText("Digite sua busca abaixo:");
+
+        cBoxOpcoesBooleano4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cBoxOpcoesBooleano4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout gp_Filtro2Layout = new javax.swing.GroupLayout(gp_Filtro2);
+        gp_Filtro2.setLayout(gp_Filtro2Layout);
+        gp_Filtro2Layout.setHorizontalGroup(
+            gp_Filtro2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gp_Filtro2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(gp_Filtro2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gp_Filtro2Layout.createSequentialGroup()
+                        .addComponent(cBoxOpcoesBusca2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(cBoxOpcoesBooleano4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2))
+                .addGap(29, 29, 29)
+                .addGroup(gp_Filtro2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gp_Filtro2Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(0, 41, Short.MAX_VALUE))
+                    .addComponent(txtBusca2))
+                .addContainerGap())
+        );
+        gp_Filtro2Layout.setVerticalGroup(
+            gp_Filtro2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gp_Filtro2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(gp_Filtro2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(gp_Filtro2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cBoxOpcoesBusca2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBusca2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cBoxOpcoesBooleano4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
+        gb_Filtro1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Filtro 1", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+
+        cBoxOpcoesBusca1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cBoxOpcoesBusca1ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setText("Listar por:");
+        jLabel6.setToolTipText("");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setText("Digite sua busca abaixo:");
+
+        cBoxOpcoesBooleano3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cBoxOpcoesBooleano3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout gb_Filtro1Layout = new javax.swing.GroupLayout(gb_Filtro1);
+        gb_Filtro1.setLayout(gb_Filtro1Layout);
+        gb_Filtro1Layout.setHorizontalGroup(
+            gb_Filtro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gb_Filtro1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(gb_Filtro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gb_Filtro1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(gb_Filtro1Layout.createSequentialGroup()
+                        .addComponent(cBoxOpcoesBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addComponent(cBoxOpcoesBooleano3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)))
+                .addGroup(gb_Filtro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(txtBusca3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        gb_Filtro1Layout.setVerticalGroup(
+            gb_Filtro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gb_Filtro1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(gb_Filtro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(gb_Filtro1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cBoxOpcoesBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBusca3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cBoxOpcoesBooleano3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        cBoxOpcoesBooleano5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cBoxOpcoesBooleano5ActionPerformed(evt);
+            }
+        });
+
+        jCheckBox1.setLabel("");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(30, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnConfigPasta1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(btnConfigPasta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cBoxOpcoesBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cBoxOpcoesBusca2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtNumInf, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addComponent(txtNumSup, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3)
-                                    .addComponent(txtBusca2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(136, 136, 136)
-                                .addComponent(jButton1)))))
-                .addContainerGap(46, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(gb_Filtro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(47, 47, 47)
+                                    .addComponent(btnConfigPasta1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(30, 30, 30)
+                                    .addComponent(btnConfigPasta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(43, 43, 43)
+                                    .addComponent(jCheckBox1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel5)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(txtNumInf, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(txtNumSup, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(129, 129, 129)
+                                    .addComponent(jButton1))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(27, 27, 27)
+                                    .addComponent(gp_Filtro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(270, 270, 270)
+                .addComponent(cBoxOpcoesBooleano5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnConfigPasta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConfigPasta1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cBoxOpcoesBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBusca1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cBoxOpcoesBusca2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBusca2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnConfigPasta1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConfigPasta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(gb_Filtro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(cBoxOpcoesBooleano5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(gp_Filtro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNumInf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNumSup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtNumSup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckBox1)))
                     .addComponent(jButton1))
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cBoxOpcoesBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBoxOpcoesBusca1ActionPerformed
-        // TODO add your handling code here:      
-        
-    }//GEN-LAST:event_cBoxOpcoesBusca1ActionPerformed
-
     private void cBoxOpcoesBusca2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBoxOpcoesBusca2ActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_cBoxOpcoesBusca2ActionPerformed
 
     private void btnConfigPasta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigPasta1ActionPerformed
-        // TODO add your handling code here:
-       
+        Configuracao config = new Configuracao();
+        //this.add
+        config.setLocationRelativeTo(null);
+        config.setVisible(true);
+
     }//GEN-LAST:event_btnConfigPasta1ActionPerformed
 
     private void btnConfigPastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigPastaActionPerformed
         // TODO add your handling code here:
-         Ajuda ajuda = new Ajuda();
+        Ajuda ajuda = new Ajuda();
         //this.add
+        ajuda.setLocationRelativeTo(null);
+        ajuda.setModalExclusionType(Dialog.ModalExclusionType.NO_EXCLUDE);
+       
         ajuda.setVisible(true);
        
+
     }//GEN-LAST:event_btnConfigPastaActionPerformed
+
+    private void cBoxOpcoesBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBoxOpcoesBusca1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cBoxOpcoesBusca1ActionPerformed
+
+    private void cBoxOpcoesBooleano3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBoxOpcoesBooleano3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cBoxOpcoesBooleano3ActionPerformed
+
+    private void cBoxOpcoesBooleano4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBoxOpcoesBooleano4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cBoxOpcoesBooleano4ActionPerformed
+
+    private void cBoxOpcoesBooleano5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBoxOpcoesBooleano5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cBoxOpcoesBooleano5ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+        if (jCheckBox1.isSelected()) {
+            txtNumInf.setEnabled(true);
+            txtNumSup.setEnabled(true);
+        } else {
+            txtNumInf.setEnabled(false);
+            txtNumSup.setEnabled(false);
+        }
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,18 +408,24 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfigPasta;
     private javax.swing.JButton btnConfigPasta1;
+    private javax.swing.JComboBox<String> cBoxOpcoesBooleano3;
+    private javax.swing.JComboBox<String> cBoxOpcoesBooleano4;
+    private javax.swing.JComboBox<String> cBoxOpcoesBooleano5;
     private javax.swing.JComboBox<String> cBoxOpcoesBusca1;
     private javax.swing.JComboBox<String> cBoxOpcoesBusca2;
+    private javax.swing.JPanel gb_Filtro1;
+    private javax.swing.JPanel gp_Filtro2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtBusca1;
     private javax.swing.JTextField txtBusca2;
+    private javax.swing.JTextField txtBusca3;
     private javax.swing.JSpinner txtNumInf;
     private javax.swing.JSpinner txtNumSup;
     // End of variables declaration//GEN-END:variables
