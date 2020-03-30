@@ -7,7 +7,7 @@ package views;
 
 //import javax.swing.*;
 import java.awt.Dialog;
-import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 
 /**
  *
@@ -20,7 +20,7 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
      */
     public BuscaDeCurriculos() {
         initComponents();
-        this.setLocationRelativeTo(null);        
+        this.setLocationRelativeTo(null);
 
         cBoxOpcoesBusca1.addItem("Nomes");
         cBoxOpcoesBusca1.addItem("Cargo");
@@ -62,8 +62,8 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnConfigAjuda = new javax.swing.JButton();
         btnConfigPasta = new javax.swing.JButton();
-        btnConfigPasta1 = new javax.swing.JButton();
         txtNumInf = new javax.swing.JSpinner();
         jLabel5 = new javax.swing.JLabel();
         txtNumSup = new javax.swing.JSpinner();
@@ -88,19 +88,19 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela de Pesquisa");
 
-        btnConfigPasta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icons8-ajuda-40.png"))); // NOI18N
+        btnConfigAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icons8-ajuda-40.png"))); // NOI18N
+        btnConfigAjuda.setSelected(true);
+        btnConfigAjuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfigAjudaActionPerformed(evt);
+            }
+        });
+
+        btnConfigPasta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icons8-automático-50.png"))); // NOI18N
         btnConfigPasta.setSelected(true);
         btnConfigPasta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfigPastaActionPerformed(evt);
-            }
-        });
-
-        btnConfigPasta1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icons8-automático-50.png"))); // NOI18N
-        btnConfigPasta1.setSelected(true);
-        btnConfigPasta1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfigPasta1ActionPerformed(evt);
             }
         });
 
@@ -241,7 +241,6 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
             }
         });
 
-        jCheckBox1.setLabel("");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
@@ -263,9 +262,9 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(47, 47, 47)
-                                    .addComponent(btnConfigPasta1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnConfigPasta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(30, 30, 30)
-                                    .addComponent(btnConfigPasta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnConfigAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(43, 43, 43)
                                     .addComponent(jCheckBox1)
@@ -292,8 +291,8 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnConfigPasta1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConfigPasta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnConfigPasta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConfigAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(gb_Filtro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
@@ -323,25 +322,48 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cBoxOpcoesBusca2ActionPerformed
 
-    private void btnConfigPasta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigPasta1ActionPerformed
+    private void btnConfigPastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigPastaActionPerformed
+        /*
         Configuracao config = new Configuracao();
         //this.add
         config.setLocationRelativeTo(null);
+        
+        config.setModalExclusionType(Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
+        config.setVisible(true);
+        */
+        
+        ConfiguracaoTeste config = new ConfiguracaoTeste(this, true);
+        //this.add
+        config.setLocationRelativeTo(null);
+        
+        
         config.setVisible(true);
 
-    }//GEN-LAST:event_btnConfigPasta1ActionPerformed
 
-    private void btnConfigPastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigPastaActionPerformed
+    }//GEN-LAST:event_btnConfigPastaActionPerformed
+
+    private void btnConfigAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigAjudaActionPerformed
         // TODO add your handling code here:
+        /*
         Ajuda ajuda = new Ajuda();
         //this.add
         ajuda.setLocationRelativeTo(null);
-        ajuda.setModalExclusionType(Dialog.ModalExclusionType.NO_EXCLUDE);
-       
-        ajuda.setVisible(true);
-       
+        //ajuda.setModalExclusionType(Dialog.ModalExclusionType.NO_EXCLUDE);
 
-    }//GEN-LAST:event_btnConfigPastaActionPerformed
+        ajuda.setModalExclusionType(Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
+        ajuda.setVisible(true);
+        */
+        
+        
+        AjudaTeste ajuda = new AjudaTeste(this, true);
+        //this.add
+        
+        ajuda.setLocationRelativeTo(null);
+    
+        ajuda.setVisible(true);
+
+
+    }//GEN-LAST:event_btnConfigAjudaActionPerformed
 
     private void cBoxOpcoesBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBoxOpcoesBusca1ActionPerformed
         // TODO add your handling code here:
@@ -406,8 +428,8 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConfigAjuda;
     private javax.swing.JButton btnConfigPasta;
-    private javax.swing.JButton btnConfigPasta1;
     private javax.swing.JComboBox<String> cBoxOpcoesBooleano3;
     private javax.swing.JComboBox<String> cBoxOpcoesBooleano4;
     private javax.swing.JComboBox<String> cBoxOpcoesBooleano5;

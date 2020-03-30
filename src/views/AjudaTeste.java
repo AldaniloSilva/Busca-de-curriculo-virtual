@@ -9,16 +9,14 @@ package views;
  *
  * @author BRUNOSILVA
  */
-public class Ajuda extends javax.swing.JFrame {    
+public class AjudaTeste extends javax.swing.JDialog {
 
     /**
-     * Creates new form Ajuda
+     * Creates new form AjudaTeste
      */
-    public Ajuda() {
+    public AjudaTeste(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);        
         initComponents();
-        cBoxOpcoesBusca3.addItem("");
-        cBoxOpcoesBusca3.addItem("OU");
-        cBoxOpcoesBusca3.addItem("E");
     }
 
     /**
@@ -30,73 +28,26 @@ public class Ajuda extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        cBoxOpcoesBusca1 = new javax.swing.JComboBox<>();
-        txtBusca1 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         cBoxOpcoesBusca2 = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         cBoxOpcoesBusca3 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        cBoxOpcoesBusca1 = new javax.swing.JComboBox<>();
+        txtBusca1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Ajuda");
-        setIconImages(null);
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icons8-automático-50.png"))); // NOI18N
-        jLabel2.setText("No botão de configurações é possível ajustar informações adicionais de busca,");
-        jLabel2.setAutoscrolls(true);
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel3.setText("As opções do filtro 2 são complementares e é possível escolher a opção \"E\" ou \"OU\".");
-        jLabel3.setAutoscrolls(true);
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel4.setText("Dúvidas? Entre em contato com a gente!");
-        jLabel4.setAutoscrolls(true);
-
-        cBoxOpcoesBusca1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "atributo a pesquisar" }));
-        cBoxOpcoesBusca1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cBoxOpcoesBusca1ActionPerformed(evt);
-            }
-        });
-
-        txtBusca1.setEditable(false);
-        txtBusca1.setText("Digite aqui sua pesquisa");
-        txtBusca1.setToolTipText("");
-        txtBusca1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBusca1ActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel5.setText("Há também uma opcão para que o usuário selecione a pasta padrão onde ficarão os currículos.");
-        jLabel5.setAutoscrolls(true);
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel6.setText("Os  listboxs contem opções de atributos para que sejam pesquisados as informações no banco.");
-        jLabel6.setAutoscrolls(true);
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel7.setText("Escolha a opção de busca \"DIFERENTE\" ou \"IGUAL\":");
-        jLabel7.setAutoscrolls(true);
+        setTitle("Tela de Ajuda");
 
         cBoxOpcoesBusca2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IGUAL" }));
         cBoxOpcoesBusca2.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +66,11 @@ public class Ajuda extends javax.swing.JFrame {
                 cBoxOpcoesBusca3ActionPerformed(evt);
             }
         });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icons8-automático-50.png"))); // NOI18N
+        jLabel2.setText("No botão de configurações é possível ajustar informações adicionais de busca,");
+        jLabel2.setAutoscrolls(true);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Versão: 1.0.0", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
@@ -163,7 +119,46 @@ public class Ajuda extends javax.swing.JFrame {
                 .addComponent(jLabel12))
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alipio\\Desktop\\icons8-ponto-de-interrogação-64.png")); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel3.setText("As opções do filtro 2 são complementares e é possível escolher a opção \"E\" ou \"OU\".");
+        jLabel3.setAutoscrolls(true);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel4.setText("Dúvidas? Entre em contato com a gente!");
+        jLabel4.setAutoscrolls(true);
+
+        cBoxOpcoesBusca1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "atributo a pesquisar" }));
+        cBoxOpcoesBusca1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cBoxOpcoesBusca1ActionPerformed(evt);
+            }
+        });
+
+        txtBusca1.setEditable(false);
+        txtBusca1.setText("Digite aqui sua pesquisa");
+        txtBusca1.setToolTipText("");
+        txtBusca1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBusca1ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel5.setText("Há também uma opcão para que o usuário selecione a pasta padrão onde ficarão os currículos.");
+        jLabel5.setAutoscrolls(true);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel6.setText("Os  listboxs contem opções de atributos para que sejam pesquisados as informações no banco.");
+        jLabel6.setAutoscrolls(true);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel7.setText("Escolha a opção de busca \"DIFERENTE\" ou \"IGUAL\":");
+        jLabel7.setAutoscrolls(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,23 +229,11 @@ public class Ajuda extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
-
-        jPanel2.getAccessibleContext().setAccessibleName("");
-        jPanel2.getAccessibleContext().setAccessibleDescription("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cBoxOpcoesBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBoxOpcoesBusca1ActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_cBoxOpcoesBusca1ActionPerformed
-
-    private void txtBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusca1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBusca1ActionPerformed
 
     private void cBoxOpcoesBusca2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBoxOpcoesBusca2ActionPerformed
         // TODO add your handling code here:
@@ -259,6 +242,14 @@ public class Ajuda extends javax.swing.JFrame {
     private void cBoxOpcoesBusca3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBoxOpcoesBusca3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cBoxOpcoesBusca3ActionPerformed
+
+    private void cBoxOpcoesBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBoxOpcoesBusca1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cBoxOpcoesBusca1ActionPerformed
+
+    private void txtBusca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBusca1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBusca1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,21 +268,27 @@ public class Ajuda extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ajuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AjudaTeste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ajuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AjudaTeste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ajuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AjudaTeste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ajuda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AjudaTeste.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ajuda().setVisible(true);
+                AjudaTeste dialog = new AjudaTeste(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -315,6 +312,4 @@ public class Ajuda extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtBusca1;
     // End of variables declaration//GEN-END:variables
-
-    
 }
