@@ -163,7 +163,7 @@ public class Ajuda extends javax.swing.JFrame {
                 .addComponent(jLabel12))
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alipio\\Desktop\\icons8-ponto-de-interrogação-64.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icons8-ponto-de-interrogação-64.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -200,7 +200,7 @@ public class Ajuda extends javax.swing.JFrame {
                             .addGap(27, 27, 27)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72)
+                        .addGap(76, 76, 76)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );

@@ -17,6 +17,9 @@ public class AjudaTeste extends javax.swing.JDialog {
     public AjudaTeste(java.awt.Frame parent, boolean modal) {
         super(parent, modal);        
         initComponents();
+        cBoxOpcoesBusca3.addItem("");
+        cBoxOpcoesBusca3.addItem("OU");
+        cBoxOpcoesBusca3.addItem("E");
     }
 
     /**
@@ -149,6 +152,8 @@ public class AjudaTeste extends javax.swing.JDialog {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel5.setText("Há também uma opcão para que o usuário selecione a pasta padrão onde ficarão os currículos.");
         jLabel5.setAutoscrolls(true);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icons8-ponto-de-interrogação-64.png"))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
