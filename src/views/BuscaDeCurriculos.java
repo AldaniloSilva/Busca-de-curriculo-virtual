@@ -6,14 +6,16 @@
 package views;
 
 //import javax.swing.*;
-import java.awt.Dialog;
-import javax.swing.JFrame;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author BRUNOSILVA
  */
 public class BuscaDeCurriculos extends javax.swing.JFrame {
+
+    public static boolean buscaAvancada = false;
 
     /**
      * Creates new form BuscaDeCurriculos
@@ -22,14 +24,12 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
 
-        cBoxOpcoesBusca1.addItem("Nomes");
-        cBoxOpcoesBusca1.addItem("Cargo");
         cBoxOpcoesBusca1.addItem("Cidade");
+        cBoxOpcoesBusca1.addItem("Cargo");
         cBoxOpcoesBusca1.addItem("Escolaridade");
 
-        cBoxOpcoesBusca2.addItem("Nomes");
-        cBoxOpcoesBusca2.addItem("Cargo");
         cBoxOpcoesBusca2.addItem("Cidade");
+        cBoxOpcoesBusca2.addItem("Cargo");
         cBoxOpcoesBusca2.addItem("Escolaridade");
 
         cBoxOpcoesBooleano3.addItem("IGUAL");
@@ -41,6 +41,7 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
         cBoxOpcoesBooleano5.addItem("");
         cBoxOpcoesBooleano5.addItem("E");
         cBoxOpcoesBooleano5.addItem("OU");
+        cBoxOpcoesBooleano5.setVisible(buscaAvancada);
 
         txtNumInf.setValue(15);
         txtNumSup.setValue(50);
@@ -48,6 +49,20 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
         txtNumInf.setEnabled(false);
         txtNumSup.setEnabled(false);
 
+        btnConfigPasta.setToolTipText("Configurar Pasta");
+        btnConfigAjuda.setToolTipText("Ajuda");
+        btnCadastrarUsuario.setToolTipText("Cadastrar Usuário");
+        btnBuscaAvancada.setToolTipText("Busca Avançada");
+
+        gp_Filtro2.setVisible(buscaAvancada);
+
+//        String[] nomesColunas = {"Nome", 
+//                                 "Idade",
+//                                 "Cidade", 
+//                                 "Cargo", 
+//                                 "Escolaridade",
+//                                 "Email"};
+//        
 //       if (jCheckBox1.isSelected()){
 //           JOptionPane.showMessageDialog(null,"Selecionado");
 //       }
@@ -84,9 +99,13 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
         cBoxOpcoesBooleano3 = new javax.swing.JComboBox<>();
         cBoxOpcoesBooleano5 = new javax.swing.JComboBox<>();
         jCheckBox1 = new javax.swing.JCheckBox();
+        btnBuscaAvancada = new javax.swing.JButton();
+        btnCadastrarUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela de Pesquisa");
+        setMinimumSize(new java.awt.Dimension(650, 645));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnConfigAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icons8-ajuda-40.png"))); // NOI18N
         btnConfigAjuda.setSelected(true);
@@ -95,6 +114,7 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
                 btnConfigAjudaActionPerformed(evt);
             }
         });
+        getContentPane().add(btnConfigAjuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 53, 50));
 
         btnConfigPasta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icons8-automático-50.png"))); // NOI18N
         btnConfigPasta.setSelected(true);
@@ -103,26 +123,41 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
                 btnConfigPastaActionPerformed(evt);
             }
         });
+        getContentPane().add(btnConfigPasta, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 18, 53, 50));
+        getContentPane().add(txtNumInf, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 50, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Faixa Etária");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, -1, -1));
+        getContentPane().add(txtNumSup, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 50, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nome", "Idade", "Cidade", "Cargo", "Telefone", "Escolaridade", "Email"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 610, 215));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icons8-pesquisa-propriedade-40.png"))); // NOI18N
         jButton1.setText("Pesquisar");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, -1, -1));
 
         gp_Filtro2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Filtro 2", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
@@ -176,8 +211,10 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
                     .addComponent(cBoxOpcoesBusca2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBusca2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cBoxOpcoesBooleano4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        getContentPane().add(gp_Filtro2, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 238, -1, -1));
 
         gb_Filtro1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Filtro 1", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
@@ -235,84 +272,39 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        getContentPane().add(gb_Filtro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 86, -1, -1));
+
         cBoxOpcoesBooleano5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cBoxOpcoesBooleano5ActionPerformed(evt);
             }
         });
+        getContentPane().add(cBoxOpcoesBooleano5, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 206, 53, -1));
 
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(30, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(gb_Filtro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(47, 47, 47)
-                                    .addComponent(btnConfigPasta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(30, 30, 30)
-                                    .addComponent(btnConfigAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(43, 43, 43)
-                                    .addComponent(jCheckBox1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel5)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(txtNumInf, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(txtNumSup, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(129, 129, 129)
-                                    .addComponent(jButton1))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(27, 27, 27)
-                                    .addComponent(gp_Filtro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(270, 270, 270)
-                .addComponent(cBoxOpcoesBooleano5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnConfigPasta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConfigAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(gb_Filtro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(cBoxOpcoesBooleano5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(gp_Filtro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNumInf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNumSup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCheckBox1)))
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        btnBuscaAvancada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icons8-mais-2-matemática-40.png"))); // NOI18N
+        btnBuscaAvancada.setSelected(true);
+        btnBuscaAvancada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaAvancadaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBuscaAvancada, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 53, 50));
+
+        btnCadastrarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icons8-name-tag-40.png"))); // NOI18N
+        btnCadastrarUsuario.setSelected(true);
+        btnCadastrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarUsuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCadastrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 53, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -323,43 +315,21 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
     }//GEN-LAST:event_cBoxOpcoesBusca2ActionPerformed
 
     private void btnConfigPastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigPastaActionPerformed
-        /*
-        Configuracao config = new Configuracao();
-        //this.add
-        config.setLocationRelativeTo(null);
-        
-        config.setModalExclusionType(Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
-        config.setVisible(true);
-        */
-        
         ConfiguracaoTeste config = new ConfiguracaoTeste(this, true);
         //this.add
         config.setLocationRelativeTo(null);
-        
-        
+
         config.setVisible(true);
 
 
     }//GEN-LAST:event_btnConfigPastaActionPerformed
 
     private void btnConfigAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigAjudaActionPerformed
-        // TODO add your handling code here:
-        /*
-        Ajuda ajuda = new Ajuda();
-        //this.add
-        ajuda.setLocationRelativeTo(null);
-        //ajuda.setModalExclusionType(Dialog.ModalExclusionType.NO_EXCLUDE);
-
-        ajuda.setModalExclusionType(Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
-        ajuda.setVisible(true);
-        */
-        
-        
         AjudaTeste ajuda = new AjudaTeste(this, true);
         //this.add
-        
+
         ajuda.setLocationRelativeTo(null);
-    
+
         ajuda.setVisible(true);
 
 
@@ -391,6 +361,54 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
             txtNumSup.setEnabled(false);
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void btnBuscaAvancadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaAvancadaActionPerformed
+        buscaAvancada = !buscaAvancada;
+        Icon menos = new ImageIcon("src\\icones\\icons8-menos-40.png");
+        Icon mais = new ImageIcon("src\\icones\\icons8-mais-2-matemática-40.png");
+
+        if (buscaAvancada) {
+            //Colocar imagem de "menos"
+            System.out.println("menos");
+            {
+                btnBuscaAvancada.setIcon(menos);
+                btnBuscaAvancada.setToolTipText("Busca Simples");
+                cBoxOpcoesBooleano5.setVisible(buscaAvancada);
+                gp_Filtro2.setVisible(buscaAvancada);
+
+            }
+
+        } else {
+            System.out.println("mais");
+            btnBuscaAvancada.setIcon(mais);
+            btnBuscaAvancada.setToolTipText("Busca Avançada");
+            cBoxOpcoesBooleano5.setVisible(buscaAvancada);
+            gp_Filtro2.setVisible(buscaAvancada);
+
+            //Esconder os objetos
+        }
+    }//GEN-LAST:event_btnBuscaAvancadaActionPerformed
+
+    private void btnCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarUsuarioActionPerformed
+        // TODO add your handling code here:
+        CadastrarUsuario telaCadastro = new CadastrarUsuario(this, true);
+        //this.add
+
+        telaCadastro.setLocationRelativeTo(null);
+
+        telaCadastro.setVisible(true);
+        
+        
+//         AjudaTeste ajuda = new AjudaTeste(this, true);
+//        //this.add
+//
+//        ajuda.setLocationRelativeTo(null);
+//
+//        ajuda.setVisible(true);
+
+        //this.add
+
+    }//GEN-LAST:event_btnCadastrarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -428,6 +446,8 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscaAvancada;
+    private javax.swing.JButton btnCadastrarUsuario;
     private javax.swing.JButton btnConfigAjuda;
     private javax.swing.JButton btnConfigPasta;
     private javax.swing.JComboBox<String> cBoxOpcoesBooleano3;

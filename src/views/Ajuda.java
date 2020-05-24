@@ -291,7 +291,16 @@ public class Ajuda extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ajuda().setVisible(true);
+                //new Ajuda().setVisible(true);
+                AjudaTeste dialog = new AjudaTeste(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+                
             }
         });
     }
