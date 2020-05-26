@@ -391,7 +391,7 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
 
     private void btnCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarUsuarioActionPerformed
         // TODO add your handling code here:
-        CadastrarUsuario telaCadastro = new CadastrarUsuario(this, true);
+        GerenciarUsuario telaCadastro = new GerenciarUsuario(this, true);
         //this.add
 
         telaCadastro.setLocationRelativeTo(null);

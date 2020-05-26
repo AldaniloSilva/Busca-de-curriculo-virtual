@@ -5,11 +5,16 @@
  */
 package views;
 
+import java.awt.Component;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author BRUNOSILVA
  */
 public class Login extends javax.swing.JFrame {
+
+    private Component frame;
 
     /**
      * Creates new form TesteLogin
@@ -36,6 +41,7 @@ public class Login extends javax.swing.JFrame {
         jProgressBar1 = new javax.swing.JProgressBar();
         jPasswordField1 = new javax.swing.JPasswordField();
         btnLogar = new javax.swing.JButton();
+        lbLogin = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -50,7 +56,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
-        setPreferredSize(new java.awt.Dimension(392, 230));
+        setPreferredSize(new java.awt.Dimension(392, 260));
 
         lblNome.setText("Nome:");
 
@@ -100,46 +106,59 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        lbLogin.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        lbLogin.setText("Seus arquivos estão sendo processados...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(painelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(painelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(btnLogar)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addComponent(btnLogar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(83, 83, 83)
+                .addComponent(lbLogin)
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(painelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLogar)
-                .addGap(21, 21, 21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbLogin)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
+
         // TODO add your handling code here:
-        
         /*
         BuscaDeCurriculo busca = new BuscaDeCurriculo();
         this.add(busca);
         busca.setVisible(true);
         dispose();
-        */
-        BuscaDeCurriculos amostra=new BuscaDeCurriculos();
+         */
+        JOptionPane.showMessageDialog(frame, "Usuário e ou Senha Inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+
+        BuscaDeCurriculos amostra = new BuscaDeCurriculos();
         //this.jFrame1.add(amostra);
         dispose();
         amostra.setVisible(true);
-        
+
     }//GEN-LAST:event_btnLogarActionPerformed
 
     /**
@@ -183,6 +202,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JFrame jFrame1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JProgressBar jProgressBar1;
+    private javax.swing.JLabel lbLogin;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JPanel painelLogin;

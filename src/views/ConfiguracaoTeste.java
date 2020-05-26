@@ -5,7 +5,9 @@
  */
 package views;
 
+import java.awt.Color;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,6 +47,7 @@ public class ConfiguracaoTeste extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtPath = new javax.swing.JTextField();
+        lbMensagem = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Configurar Pasta");
@@ -134,6 +137,11 @@ public class ConfiguracaoTeste extends javax.swing.JDialog {
         jLabel5.setText("Clique no botão abaixo para selecionar a pasta em que os currículos estão armazenados.");
         jLabel5.setAutoscrolls(true);
 
+        lbMensagem.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        lbMensagem.setForeground(new java.awt.Color(231, 22, 22));
+        lbMensagem.setText("Nenhuma pasta foi selecionada");
+        lbMensagem.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,8 +152,13 @@ public class ConfiguracaoTeste extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtPath, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(txtPath, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(lbMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel5)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -160,7 +173,9 @@ public class ConfiguracaoTeste extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(txtPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbMensagem))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -176,17 +191,33 @@ public class ConfiguracaoTeste extends javax.swing.JDialog {
         //Teste Save File Dialog
         JFileChooser pasta = new JFileChooser();
         pasta.setDialogTitle("Escolha a pasta com os currículos");
+        
 
         // restringe a amostra a diretorios apenas
         pasta.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
         int userSelection = pasta.showSaveDialog(this);
+        Object[] options = { "Sim", "Não" };
+        
+        
 
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             //File fileToSave = pasta.getSelectedFile();
             txtPath.setText(pasta.getSelectedFile().toString());
             //System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+            lbMensagem.setText("Pasta configurada!");
+            lbMensagem.setForeground(Color.GREEN);
+            JOptionPane.showOptionDialog(null, "Deseja processar agora os arquivos?", "Atenção", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+            
+            
+
+
+            
+            
+            
+            
         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -243,6 +274,7 @@ public class ConfiguracaoTeste extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lbMensagem;
     private javax.swing.JTextField txtPath;
     // End of variables declaration//GEN-END:variables
 }

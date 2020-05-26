@@ -11,12 +11,12 @@ import java.awt.Color;
  *
  * @author Alipio
  */
-public class CadastrarUsuario extends javax.swing.JDialog {
+public class GerenciarUsuario extends javax.swing.JDialog {
 
     /**
      * Creates new form CadastrarUsuario
      */
-    public CadastrarUsuario(java.awt.Frame parent, boolean modal) {
+    public GerenciarUsuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         rbCadastar.setSelected(true);
@@ -60,7 +60,7 @@ public class CadastrarUsuario extends javax.swing.JDialog {
         btOperacao = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastrar Usuário");
+        setTitle("Gerenciar Usuário");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Operação")));
 
@@ -191,6 +191,8 @@ public class CadastrarUsuario extends javax.swing.JDialog {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
+        getAccessibleContext().setAccessibleName("Gerenciar Usuário");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -252,20 +254,21 @@ public class CadastrarUsuario extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastrarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastrarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastrarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastrarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GerenciarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CadastrarUsuario dialog = new CadastrarUsuario(new javax.swing.JFrame(), true);
+                GerenciarUsuario dialog = new GerenciarUsuario(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
