@@ -6,8 +6,10 @@
 package views;
 
 //import javax.swing.*;
+import java.awt.Component;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,6 +18,7 @@ import javax.swing.ImageIcon;
 public class BuscaDeCurriculos extends javax.swing.JFrame {
 
     public static boolean buscaAvancada = false;
+    private Component frame;
 
     /**
      * Creates new form BuscaDeCurriculos
@@ -157,6 +160,11 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/icons8-pesquisa-propriedade-40.png"))); // NOI18N
         jButton1.setText("Pesquisar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, -1, -1));
 
         gp_Filtro2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Filtro 2", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
@@ -409,6 +417,11 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
         //this.add
 
     }//GEN-LAST:event_btnCadastrarUsuarioActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(frame, "Não há resultado para pesquisa!", "Atenção", JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
