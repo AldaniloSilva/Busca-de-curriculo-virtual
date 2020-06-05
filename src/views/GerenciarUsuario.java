@@ -58,6 +58,7 @@ public class GerenciarUsuario extends javax.swing.JDialog {
         cbAcesso = new javax.swing.JComboBox<>();
         spId = new javax.swing.JSpinner();
         btOperacao = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerenciar Usuário");
@@ -122,6 +123,10 @@ public class GerenciarUsuario extends javax.swing.JDialog {
 
         btOperacao.setText("jButton1");
 
+        jLabel4.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel4.setText("Id não existe!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,8 +162,10 @@ public class GerenciarUsuario extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addComponent(cbAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(btOperacao)))
+                        .addGap(125, 125, 125)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(btOperacao))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -187,11 +194,11 @@ public class GerenciarUsuario extends javax.swing.JDialog {
                         .addComponent(jLabel3))
                     .addComponent(cbAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(btOperacao)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
-
-        getAccessibleContext().setAccessibleName("Gerenciar Usuário");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -287,6 +294,7 @@ public class GerenciarUsuario extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton rbAlterar;
