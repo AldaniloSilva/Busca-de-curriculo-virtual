@@ -18,9 +18,6 @@ import ParsingDados.AnalisaCargo;
 import business.Candidato;
 import business.Cidade;
 import DAO.CandidatoMySqlDAO;
-import views.Login;
-//import business.Candidato;
-//import business.Cidade;
 
 /**
  *
@@ -60,7 +57,8 @@ public class PDFMain {
         //Cria uma lista de Candidatos para Salvar as informações no banco
         ArrayList<Candidato> dados = new ArrayList();
 
-        loadMax = listaArquivos.length;
+        //loadMax = listaArquivos.length;
+          loadMax = 11;
 
         for (File listaArquivo : listaArquivos) {
 

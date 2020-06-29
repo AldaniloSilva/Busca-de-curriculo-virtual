@@ -6,6 +6,7 @@
 package ParsingDados;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,9 +20,10 @@ import java.util.regex.Pattern;
 public  class LeiaCVS {
     
    
-  public static int RetornaCodigoCidade(String uf, String string) {
+  public static int RetornaCodigoCidade(String uf, String string) throws IOException {
 
-    String arquivoCSV = "C:\\Users\\Alipio\\Desktop\\Currículos-FTT\\Cidades\\"+ uf + ".csv";
+    //String arquivoCSV = "C:\\Users\\Alipio\\Desktop\\Currículos-FTT\\Cidades\\"+ uf + ".csv";
+    String arquivoCSV = (new File(".").getCanonicalPath() + "\\Cidades\\" + uf + ".csv");
     BufferedReader br = null;
     String linha;
     String csvDivisor = ";";

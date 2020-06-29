@@ -195,11 +195,13 @@ public class Login extends javax.swing.JFrame {
 //                    BuscaDeCurriculos amostra = new BuscaDeCurriculos();
 //                    dispose();
 //                    amostra.setVisible(true);
+                                        
                     btnLogar.setEnabled(false);
                     LoadingDados Teste = new LoadingDados();
                     Teste.start();
                     pastaOrigem = GerenciaPasta.RetornaCaminhoPasta();
                     PDFMain.CarregarArquivos(pastaOrigem);
+                   
 
                     BuscaDeCurriculos amostra = new BuscaDeCurriculos();
                     //dispose();
@@ -264,20 +266,29 @@ public class Login extends javax.swing.JFrame {
     public class LoadingDados extends Thread {
 
         public void run() {
-
-            for (int i = 0; i < 101; i++) {
+            try {
+                sleep(100);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            int maximo = PDFMain.getLoadMax();
+            jProgressBar1.setMaximum(maximo);
+         
+            for (int i = 0; i < maximo+1 ; i++) {
                 try {
-                    sleep(65);
+                    sleep(100);
                     jProgressBar1.setValue(i);
-                    if (jProgressBar1.getValue() <= 25) {
-                        lbLogin.setText("Carregando Sistema ...");
-                    } else if (jProgressBar1.getValue() <= 50) {
-                        lbLogin.setText("Carregando banco de dados ...");
-                    } else if (jProgressBar1.getValue() <= 75) {
-                        lbLogin.setText("Abrindo as tabelas");
-                    } else {
-                        lbLogin.setText("O sistema está sendo iniciado...");
-                    }
+                    lbLogin.setText("Carregando os arquivos...");
+//                    if (jProgressBar1.getValue() <= 2) {
+//                        lbLogin.setText("Carregando Sistema ...");
+//                    } else if (jProgressBar1.getValue() <= 50) {
+//                        lbLogin.setText("Carregando banco de dados ...");
+//                    } else if (jProgressBar1.getValue() <= 75) {
+//                        lbLogin.setText("Abrindo as tabelas");
+//                    } else {
+//                        lbLogin.setText("O sistema está sendo iniciado...");
+//                    }
+
                 } catch (InterruptedException ex) {
                 }
             }
