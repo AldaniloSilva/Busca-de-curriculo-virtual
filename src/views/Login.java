@@ -6,6 +6,10 @@
 package views;
 
 import java.awt.Component;
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -61,6 +65,8 @@ public class Login extends javax.swing.JFrame {
         lblNome.setText("Nome:");
 
         lblSenha.setText("Senha:");
+
+        jProgressBar1.setStringPainted(true);
 
         javax.swing.GroupLayout painelLoginLayout = new javax.swing.GroupLayout(painelLogin);
         painelLogin.setLayout(painelLoginLayout);
@@ -152,12 +158,43 @@ public class Login extends javax.swing.JFrame {
         busca.setVisible(true);
         dispose();
          */
-        JOptionPane.showMessageDialog(frame, "Usuário e ou Senha Inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+//        new Thread() {
+//            public void run(javax.swing.JFrame JFrame1) {
+//                for (int i = 0; i < 101; i++) {
+//                    try {
+//                        sleep(100);
+//                        jProgressBar1.setValue(i);
+//                        if (jProgressBar1.getValue() <= 25) {
+//                            lbLogin.setText("Carregando Sistema ...");
+//                        } else if (jProgressBar1.getValue() <= 50) {
+//                            lbLogin.setText("Carregando banco de dados ...");
+//                        } else if (jProgressBar1.getValue() <= 75) {
+//                            lbLogin.setText("Abrindo as tabelas");
+//                        } else {
+//                            lbLogin.setText("O sistema está sendo iniciado...");
+//                        }
+//                    } catch (InterruptedException ex) {
+//                    }
+//                }
+//                BuscaDeCurriculos amostra = new BuscaDeCurriculos();
+//                JFrame1.add(amostra);
+//                dispose();
+//                amostra.setVisible(true);
+//
+//            }
+//            
+//        }.start();
+      
+        LoadingDados Teste = new LoadingDados();
+        Teste.start();
+        
 
-        BuscaDeCurriculos amostra = new BuscaDeCurriculos();
-        //this.jFrame1.add(amostra);
-        dispose();
-        amostra.setVisible(true);
+  
+            BuscaDeCurriculos amostra = new BuscaDeCurriculos();
+            //dispose();
+            amostra.setVisible(false);
+        
+
 
     }//GEN-LAST:event_btnLogarActionPerformed
 
@@ -175,16 +212,24 @@ public class Login extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -195,6 +240,37 @@ public class Login extends javax.swing.JFrame {
                 new Login().setVisible(true);
             }
         });
+
+    }
+  
+    
+    public class LoadingDados extends Thread {
+
+        public void run() {
+
+            for (int i = 0; i < 101; i++) {
+                try {
+                    sleep(65);
+                    jProgressBar1.setValue(i);
+                    if (jProgressBar1.getValue() <= 25) {
+                        lbLogin.setText("Carregando Sistema ...");
+                    } else if (jProgressBar1.getValue() <= 50) {
+                        lbLogin.setText("Carregando banco de dados ...");
+                    } else if (jProgressBar1.getValue() <= 75) {
+                        lbLogin.setText("Abrindo as tabelas");
+                    } else {
+                        lbLogin.setText("O sistema está sendo iniciado...");
+                    }
+                } catch (InterruptedException ex) {
+                }
+            }
+
+            BuscaDeCurriculos amostra = new BuscaDeCurriculos();
+            dispose();
+            amostra.setVisible(true);
+            
+
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

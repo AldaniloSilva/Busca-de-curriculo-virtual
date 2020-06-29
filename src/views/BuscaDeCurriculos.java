@@ -7,6 +7,9 @@ package views;
 
 //import javax.swing.*;
 import java.awt.Component;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -323,11 +326,15 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
     }//GEN-LAST:event_cBoxOpcoesBusca2ActionPerformed
 
     private void btnConfigPastaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigPastaActionPerformed
-        ConfiguracaoTeste config = new ConfiguracaoTeste(this, true);
-        //this.add
-        config.setLocationRelativeTo(null);
-
-        config.setVisible(true);
+        try {
+            Configuracao config = new Configuracao(this, true);
+            //this.add
+            config.setLocationRelativeTo(null);
+            
+            config.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(BuscaDeCurriculos.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }//GEN-LAST:event_btnConfigPastaActionPerformed

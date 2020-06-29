@@ -121,6 +121,8 @@ public class GerenciarUsuario extends javax.swing.JDialog {
 
         cbAcesso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Padrão", "Administrador" }));
 
+        spId.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+
         btOperacao.setText("jButton1");
 
         jLabel4.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
