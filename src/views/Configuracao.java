@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import servicos.GerenciaPasta;
 
 /**
  *
@@ -66,7 +67,7 @@ public class Configuracao extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Configurar Pasta");
-        setPreferredSize(new java.awt.Dimension(574, 180));
+        setPreferredSize(new java.awt.Dimension(598, 200));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Opções de Busca", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
 
@@ -270,6 +271,20 @@ public class Configuracao extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(Configuracao.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

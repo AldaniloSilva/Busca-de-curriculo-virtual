@@ -5,12 +5,22 @@
  */
 package views;
 
+import business.Usuario;
 import java.awt.Component;
-import static java.lang.Thread.sleep;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import servicos.ServicoDeMensagens;
+import servicos.Validacoes;
+import servicos.GerenciaPasta;
+import ColetaDados.PDFMain;
+import java.awt.Color;
+import static java.lang.Thread.sleep;
+import javax.swing.JProgressBar;
+import servicos.GerenciaPasta;
 
 /**
  *
@@ -41,9 +51,9 @@ public class Login extends javax.swing.JFrame {
         painelLogin = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
-        txtSenha = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         jProgressBar1 = new javax.swing.JProgressBar();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtSenha = new javax.swing.JPasswordField();
         btnLogar = new javax.swing.JButton();
         lbLogin = new javax.swing.JLabel();
 
@@ -66,6 +76,7 @@ public class Login extends javax.swing.JFrame {
 
         lblSenha.setText("Senha:");
 
+        jProgressBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jProgressBar1.setStringPainted(true);
 
         javax.swing.GroupLayout painelLoginLayout = new javax.swing.GroupLayout(painelLogin);
@@ -73,17 +84,22 @@ public class Login extends javax.swing.JFrame {
         painelLoginLayout.setHorizontalGroup(
             painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelLoginLayout.createSequentialGroup()
-                .addGap(65, 65, 65)
                 .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelLoginLayout.createSequentialGroup()
-                        .addComponent(lblNome)
-                        .addGap(30, 30, 30)
-                        .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(65, 65, 65)
+                        .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelLoginLayout.createSequentialGroup()
+                                .addComponent(lblNome)
+                                .addGap(30, 30, 30)
+                                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(painelLoginLayout.createSequentialGroup()
+                                .addComponent(lblSenha)
+                                .addGap(26, 26, 26)
+                                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(painelLoginLayout.createSequentialGroup()
-                        .addComponent(lblSenha)
-                        .addGap(26, 26, 26)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(79, 79, 79)
+                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(66, 66, 66))
         );
         painelLoginLayout.setVerticalGroup(
             painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,15 +109,15 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(painelLoginLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelLoginLayout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addComponent(lblSenha))
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
         );
 
         btnLogar.setText("Entrar");
@@ -132,7 +148,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(83, 83, 83)
                 .addComponent(lbLogin)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +159,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(btnLogar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbLogin)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -151,49 +167,60 @@ public class Login extends javax.swing.JFrame {
 
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
 
-        // TODO add your handling code here:
-        /*
-        BuscaDeCurriculo busca = new BuscaDeCurriculo();
-        this.add(busca);
-        busca.setVisible(true);
-        dispose();
-         */
-//        new Thread() {
-//            public void run(javax.swing.JFrame JFrame1) {
-//                for (int i = 0; i < 101; i++) {
-//                    try {
-//                        sleep(100);
-//                        jProgressBar1.setValue(i);
-//                        if (jProgressBar1.getValue() <= 25) {
-//                            lbLogin.setText("Carregando Sistema ...");
-//                        } else if (jProgressBar1.getValue() <= 50) {
-//                            lbLogin.setText("Carregando banco de dados ...");
-//                        } else if (jProgressBar1.getValue() <= 75) {
-//                            lbLogin.setText("Abrindo as tabelas");
-//                        } else {
-//                            lbLogin.setText("O sistema está sendo iniciado...");
-//                        }
-//                    } catch (InterruptedException ex) {
-//                    }
-//                }
-//                BuscaDeCurriculos amostra = new BuscaDeCurriculos();
-//                JFrame1.add(amostra);
-//                dispose();
-//                amostra.setVisible(true);
-//
-//            }
-//            
-//        }.start();
-      
-        LoadingDados Teste = new LoadingDados();
-        Teste.start();
-        
+        //JOptionPane.showMessageDialog(frame, "Usuário e ou Senha Inválidos!", "Erro", JOptionPane.ERROR_MESSAGE);
+        Usuario usuEnvio = new Usuario();
+        try {
+            GerenciaPasta.PastaDestino();
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-  
-            BuscaDeCurriculos amostra = new BuscaDeCurriculos();
-            //dispose();
-            amostra.setVisible(false);
-        
+        usuEnvio.setNome(txtUsuario.getText());
+        String valor = new String(txtSenha.getPassword());
+        String pastaOrigem;
+        usuEnvio.setSenha(valor);
+        boolean usuarioValido = false;
+
+        try {
+            usuarioValido = Validacoes.validaUsuarioSenha(usuEnvio);
+            GerenciaPasta.PastaDestino();
+
+            if (usuarioValido) {
+                if (GerenciaPasta.isPastaDestino()) {
+                    //Se o usuário for válido pega o caminho configurado e carrega os arquivos no banco
+
+//                    btnLogar.setEnabled(false);
+//                    pastaOrigem = GerenciaPasta.RetornaCaminhoPasta();
+//                    PDFMain.CarregarArquivos(pastaOrigem);
+//                    BuscaDeCurriculos amostra = new BuscaDeCurriculos();
+//                    dispose();
+//                    amostra.setVisible(true);
+                    btnLogar.setEnabled(false);
+                    LoadingDados Teste = new LoadingDados();
+                    Teste.start();
+                    pastaOrigem = GerenciaPasta.RetornaCaminhoPasta();
+                    PDFMain.CarregarArquivos(pastaOrigem);
+
+                    BuscaDeCurriculos amostra = new BuscaDeCurriculos();
+                    //dispose();
+                    amostra.setVisible(false);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(frame, ServicoDeMensagens.getMensagem(), "Erro", JOptionPane.ERROR_MESSAGE);
+
+            }
+
+        } catch (IllegalArgumentException | IllegalAccessException ex) {
+            JOptionPane.showMessageDialog(frame, ex.getMessage(), "Erro argumento ilegal", JOptionPane.ERROR_MESSAGE);
+            //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        catch (SQLException ex) {
+            JOptionPane.showMessageDialog(frame, ex.getMessage(), "Erro na consulta com banco", JOptionPane.ERROR_MESSAGE);
+            //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
     }//GEN-LAST:event_btnLogarActionPerformed
@@ -212,24 +239,16 @@ public class Login extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -240,10 +259,8 @@ public class Login extends javax.swing.JFrame {
                 new Login().setVisible(true);
             }
         });
-
     }
-  
-    
+
     public class LoadingDados extends Thread {
 
         public void run() {
@@ -268,7 +285,6 @@ public class Login extends javax.swing.JFrame {
             BuscaDeCurriculos amostra = new BuscaDeCurriculos();
             dispose();
             amostra.setVisible(true);
-            
 
         }
     }
@@ -276,12 +292,12 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogar;
     private javax.swing.JFrame jFrame1;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JLabel lbLogin;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JPanel painelLogin;
-    private javax.swing.JTextField txtSenha;
+    private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

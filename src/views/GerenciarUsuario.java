@@ -5,7 +5,24 @@
  */
 package views;
 
+import DAO.UsuarioMySqlDAO;
+import Enums.EnumOperacao;
+import Enums.EnumTipoAcesso;
+import business.Usuario;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import servicos.ServicoDeMensagens;
+import servicos.Validacoes;
 
 /**
  *
@@ -13,28 +30,101 @@ import java.awt.Color;
  */
 public class GerenciarUsuario extends javax.swing.JDialog {
 
+    //Classe para eventos do mouse
+    private class ManipuladorMouse implements MouseListener {
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            tfNome.setText("");
+            tfSenha.setText("");
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+    }
+
+    private void apagarTextBox() {
+        tfNome.setText("");
+        tfSenha.setText("");
+    }
+
     /**
-     * Creates new form CadastrarUsuario
+     * Creates new form GerenciarUsuario
      */
     public GerenciarUsuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        rbCadastar.setSelected(true);
+        jLabelStatus.setText("");
+        UsuarioMySqlDAO uDao = new UsuarioMySqlDAO();
+        try {
+            spId.setValue(uDao.proximoId());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Id não encontrado");
+        }
+
+        rbCadastrar.setSelected(true);
         spId.setEnabled(false);
+
+        eventoSpIdClicaNaSeta();
+
         tfNome.setEnabled(true);
-        tfSenha.setEnabled(true);
+        tfSenha.setEnabled(true);       
+        
+
+        tfNome.setText("Digite nome de usuario");
+        tfSenha.setText("Senha de 6 a 10 digitos");
+
         cbAcesso.setEnabled(true);
         btOperacao.setText("Cadastrar");
         btOperacao.setForeground(Color.BLACK);
         btOperacao.setBackground(Color.GREEN);
     }
 
-//    private CadastrarUsuario(Frame parent, boolean modal) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//    CadastrarUsuario(BuscaDeCurriculos aThis, boolean b) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
+    /**
+     * Esse evento faz com que a cada click na seta que muda o campo id os
+     * demais campos sejam preenchidos, se o id já estiver cadastrado
+     */
+    private void eventoSpIdClicaNaSeta() {
+        spId.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+
+                UsuarioMySqlDAO uDao = new UsuarioMySqlDAO();
+                Usuario usuario = new Usuario();
+                try {
+                    int teste = (int) spId.getValue();
+                    usuario = uDao.consultaPorId(teste);
+                    if (usuario != null) {
+                        tfNome.setText(usuario.getNome());
+                        tfSenha.setText(usuario.getSenha());
+                        cbAcesso.setSelectedItem(usuario.getTipoAcesso().getDescricao());
+                    } else {
+                        tfNome.setText("");
+                        tfSenha.setText("");
+                    }
+
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Id não encontrado");
+                }
+            }
+        });
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,7 +136,7 @@ public class GerenciarUsuario extends javax.swing.JDialog {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        rbCadastar = new javax.swing.JRadioButton();
+        rbCadastrar = new javax.swing.JRadioButton();
         rbAlterar = new javax.swing.JRadioButton();
         rbExcluir = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
@@ -58,18 +148,18 @@ public class GerenciarUsuario extends javax.swing.JDialog {
         cbAcesso = new javax.swing.JComboBox<>();
         spId = new javax.swing.JSpinner();
         btOperacao = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        jLabelStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gerenciar Usuário");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Operação")));
 
-        buttonGroup1.add(rbCadastar);
-        rbCadastar.setText("Cadastrar");
-        rbCadastar.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(rbCadastrar);
+        rbCadastrar.setText("Cadastrar");
+        rbCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbCadastarActionPerformed(evt);
+                rbCadastrarActionPerformed(evt);
             }
         });
 
@@ -94,7 +184,7 @@ public class GerenciarUsuario extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(rbCadastar)
+                .addComponent(rbCadastrar)
                 .addGap(30, 30, 30)
                 .addComponent(rbAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
@@ -104,7 +194,7 @@ public class GerenciarUsuario extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(rbCadastar)
+                .addComponent(rbCadastrar)
                 .addComponent(rbAlterar)
                 .addComponent(rbExcluir))
         );
@@ -121,13 +211,18 @@ public class GerenciarUsuario extends javax.swing.JDialog {
 
         cbAcesso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Padrão", "Administrador" }));
 
-        spId.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        spId.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         btOperacao.setText("jButton1");
+        btOperacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btOperacaoActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel4.setText("Id não existe!");
+        jLabelStatus.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        jLabelStatus.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelStatus.setText("Id não existe!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,11 +249,11 @@ public class GerenciarUsuario extends javax.swing.JDialog {
                                             .addComponent(jLabel2))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGap(24, 24, 24)
-                                                .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
                                                 .addGap(28, 28, 28)
-                                                .addComponent(spId, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                                .addComponent(spId, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(22, 22, 22)
+                                                .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
@@ -166,7 +261,7 @@ public class GerenciarUsuario extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(125, 125, 125)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
+                            .addComponent(jLabelStatus)
                             .addComponent(btOperacao))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
@@ -196,7 +291,7 @@ public class GerenciarUsuario extends javax.swing.JDialog {
                         .addComponent(jLabel3))
                     .addComponent(cbAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(jLabelStatus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(btOperacao)
                 .addGap(14, 14, 14))
@@ -205,10 +300,11 @@ public class GerenciarUsuario extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rbCadastarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCadastarActionPerformed
+    private void rbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCadastrarActionPerformed
         // TODO add your handling code here:
         //if (jCheckBox1.isSelected()) {
-        if (rbCadastar.isSelected()) {
+        if (rbCadastrar.isSelected()) {
+
             spId.setEnabled(false);
             tfNome.setEnabled(true);
             tfSenha.setEnabled(true);
@@ -216,35 +312,110 @@ public class GerenciarUsuario extends javax.swing.JDialog {
             btOperacao.setText("Cadastrar");
             btOperacao.setForeground(Color.BLACK);
             btOperacao.setBackground(Color.GREEN);
+
+            UsuarioMySqlDAO uDao = new UsuarioMySqlDAO();
+            int proximoId = 0;
+            try {
+                proximoId = uDao.proximoId();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Id não encontrado");
+            }
+
+            spId.setValue(proximoId);
+
         }
 
-    }//GEN-LAST:event_rbCadastarActionPerformed
+    }//GEN-LAST:event_rbCadastrarActionPerformed
 
     private void rbAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAlterarActionPerformed
         // TODO add your handling code here:
         if (rbAlterar.isSelected()) {
+            eventoSpIdClicaNaSeta();
+
             spId.setEnabled(true);
+            spId.getEditor();
+
             tfNome.setEnabled(true);
             tfSenha.setEnabled(true);
             cbAcesso.setEnabled(true);
+
             btOperacao.setText("Alterar");
             btOperacao.setForeground(Color.black);
             btOperacao.setBackground(Color.YELLOW);
         }
     }//GEN-LAST:event_rbAlterarActionPerformed
 
+
     private void rbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbExcluirActionPerformed
         // TODO add your handling code here:
         if (rbExcluir.isSelected()) {
+            eventoSpIdClicaNaSeta();
+
             spId.setEnabled(true);
             tfNome.setEnabled(false);
             tfSenha.setEnabled(false);
             cbAcesso.setEnabled(false);
+            tfNome.setText("");
+            tfSenha.setText("");
+
             btOperacao.setText("Excluir");
             btOperacao.setForeground(Color.WHITE);
             btOperacao.setBackground(Color.RED);
         }
     }//GEN-LAST:event_rbExcluirActionPerformed
+
+    private void btOperacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOperacaoActionPerformed
+        UsuarioMySqlDAO uDao = new UsuarioMySqlDAO();
+        Usuario usuario = new Usuario();
+
+        try {
+            usuario.setId((int) spId.getValue());
+            usuario.setNome(tfNome.getText());
+            usuario.setSenha(tfSenha.getText());
+
+            EnumTipoAcesso acesso = EnumTipoAcesso.PADRAO;
+            if (cbAcesso.getSelectedItem().toString().equals("Administrador")) {
+                acesso = EnumTipoAcesso.ADM;
+            }
+            usuario.setTipoAcesso(acesso);
+            
+            boolean valido=false;
+            if (rbExcluir.isSelected()) {
+                valido = Validacoes.validaCamposCadastroUsuario(usuario, EnumOperacao.DELETAR);
+                if(valido){
+                   uDao.deletarEntidade(usuario.getId(), usuario);                    
+                }                 
+
+            } else if (rbCadastrar.isSelected()) {
+                valido = Validacoes.validaCamposCadastroUsuario(usuario, EnumOperacao.INSERIR);
+                if (valido) {
+                    uDao.inserirEntidade(usuario);
+                }
+            } else if (rbAlterar.isSelected()) {
+                valido = Validacoes.validaCamposCadastroUsuario(usuario, EnumOperacao.ALTERAR);
+                if (valido) {
+                    uDao.alterarEntidade(usuario.getId(), usuario);
+                }
+            }
+
+            if(valido){
+                JOptionPane.showMessageDialog(this, ServicoDeMensagens.getMensagem(), "OK", JOptionPane.OK_OPTION);
+                apagarTextBox();
+            }
+            else{
+                JOptionPane.showMessageDialog(this, ServicoDeMensagens.getMensagem(), "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+            
+            
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    ServicoDeMensagens.getMensagem(),
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btOperacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,6 +460,7 @@ public class GerenciarUsuario extends javax.swing.JDialog {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btOperacao;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -296,14 +468,64 @@ public class GerenciarUsuario extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelStatus;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton rbAlterar;
-    private javax.swing.JRadioButton rbCadastar;
+    private javax.swing.JRadioButton rbCadastrar;
     private javax.swing.JRadioButton rbExcluir;
     private javax.swing.JSpinner spId;
     private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfSenha;
     // End of variables declaration//GEN-END:variables
 }
+
+/*
+     //Evento para pegar quando é clicado na seta do JSpinner
+        ((JSpinner.DefaultEditor) spId.getEditor()).getTextField().addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    
+
+                }
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+
+ */
+
+ /*
+spId.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+
+                Usuario usuario = new Usuario();
+                try {
+                    int teste = (int) spId.getValue();
+                    usuario = uDao.consultaPorId(teste);
+                    if (usuario != null) {
+                        tfNome.setText(usuario.getNome());
+                        tfSenha.setText(usuario.getSenha());
+                        cbAcesso.setSelectedItem(usuario.getTipoAcesso().getDescricao());
+                    } else {
+                        tfNome.setText("");
+                        tfSenha.setText("");
+                    }
+
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Id não encontrado");
+                }
+            }
+        });
+ */
