@@ -9,17 +9,13 @@ import business.Usuario;
 import java.awt.Component;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import servicos.ServicoDeMensagens;
 import servicos.Validacoes;
-import servicos.GerenciaPasta;
 import ColetaDados.PDFMain;
-import java.awt.Color;
 import static java.lang.Thread.sleep;
-import javax.swing.JProgressBar;
 import servicos.GerenciaPasta;
 
 /**
@@ -194,28 +190,32 @@ public class Login extends javax.swing.JFrame {
 //                    BuscaDeCurriculos amostra = new BuscaDeCurriculos();
 //                    dispose();
 //                    amostra.setVisible(true);
-                                        
                     btnLogar.setEnabled(false);
                     //LoadingDados barraProgresso = new LoadingDados();
-                    //barraProgresso.start();
+
                     pastaOrigem = GerenciaPasta.RetornaCaminhoPasta();
-                    
-                    if(!pastaOrigem.equals("")){
+                    //barraProgresso.setArq(pastaOrigem);
+                    //barraProgresso.start();
+
+                    if (!pastaOrigem.equals("")) {
+                        
+
                         PDFMain.CarregarArquivos(pastaOrigem);
-                        //if(barraProgresso.isAlive()){
-                          //  barraProgresso.join(1000);
-                        //}
-                    }
-                    else{
+
+                        /*
+                        if(b.isAlive()){
+                          b.join(1000);
+                        }
+                         */
+                    } else {
                         JOptionPane.showMessageDialog(frame, "Pasta origem não configurada!", "Atenção", JOptionPane.INFORMATION_MESSAGE);
-                    }                  
-                                       
+                    }
 
                     
                     BuscaDeCurriculos amostra = new BuscaDeCurriculos();
                     dispose();
                     amostra.setVisible(true);
-                    
+                     
                 }
 
             } else {
@@ -230,13 +230,9 @@ public class Login extends javax.swing.JFrame {
         catch (SQLException ex) {
             JOptionPane.showMessageDialog(frame, ex.getMessage(), "Erro na consulta com banco", JOptionPane.ERROR_MESSAGE);
             //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }catch (IOException ex) {
+        } catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //JOptionPane.showMessageDialog(frame, ex.getMessage(), "Erro  thread interrompida", JOptionPane.ERROR_MESSAGE);
-        
-        //JOptionPane.showMessageDialog(frame, ex.getMessage(), "Erro  thread interrompida", JOptionPane.ERROR_MESSAGE);
-        
 
 
     }//GEN-LAST:event_btnLogarActionPerformed
@@ -277,39 +273,48 @@ public class Login extends javax.swing.JFrame {
         });
     }
 
-    
-    /*
     public class LoadingDados extends Thread {
+
+        private String arq;
+
+        public String getArq() {
+            return arq;
+        }
+
+        public void setArq(String arq) {
+            this.arq = arq;
+        }
 
         public void run() {
             try {
+
                 sleep(100);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
+
             int maximo = PDFMain.getLoadMax();
             jProgressBar1.setMaximum(maximo);
-         
-            for (int i = 0; i < maximo+1 ; i++) {
+
+            for (int i = 0; i < maximo + 1; i++) {
                 try {
-                    sleep(100);
+                    sleep(50);
                     jProgressBar1.setValue(i);
                     lbLogin.setText("Carregando os arquivos...");
-
 
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
+            /*
             BuscaDeCurriculos amostra = new BuscaDeCurriculos();
             dispose();
-            amostra.setVisible(true);
-
+            amostra.setVisible(true); 
+             */
         }
     }
-    */
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogar;

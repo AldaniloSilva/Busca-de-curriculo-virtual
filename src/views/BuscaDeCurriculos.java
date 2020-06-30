@@ -448,7 +448,9 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
         if (filtro == null) {
             filtro = new CamposDeClasse();
         }
-        if (opcaoDeCampo.toLowerCase().equals("cidade")) {
+        //alterado em 30/06/2020
+        if (opcaoDeCampo.toLowerCase().equals("cidade")||
+              opcaoDeCampo.toLowerCase().equals("estado")  ) {
             String chave = ".nome";
             opcaoDeCampo = opcaoDeCampo + chave;
         }

@@ -5,14 +5,12 @@
         <group>
             <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/N2-Ling.Programacao/src/ColetaDados/PDFMain.java</file>
             <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/N2-Ling.Programacao/src/ColetaDados/PDFMoveFolderFile.java</file>
-            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/N2-Ling.Programacao/src/ParsingDados/LeiaCVS.java</file>
+            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/N2-Ling.Programacao/src/ColetaDados/PDFReaderFolders.java</file>
             <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/N2-Ling.Programacao/src/views/Configuracao.java</file>
             <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/N2-Ling.Programacao/src/views/Login.java</file>
-            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/N2-Ling.Programacao/src/DAO/CidadeMySqlDAO.java</file>
-            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/N2-Ling.Programacao/src/views/GerenciarUsuario.java</file>
             <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/N2-Ling.Programacao/src/views/BuscaDeCurriculos.java</file>
-            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/N2-Ling.Programacao/src/ParsingDados/AnalisaEmail.java</file>
-            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/N2-Ling.Programacao/src/ParsingDados/AnalisaCidade.java</file>
+            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/N2-Ling.Programacao/src/servicos/TesteBarraProg.java</file>
+            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/N2-Ling.Programacao/src/ColetaDados/PDFManager.java</file>
         </group>
     </open-files>
 </project-private>

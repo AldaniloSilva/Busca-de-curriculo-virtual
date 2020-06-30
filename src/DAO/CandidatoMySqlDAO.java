@@ -34,8 +34,14 @@ public class CandidatoMySqlDAO extends MySqlDAO<Candidato> {
 
     @Override
     protected String montaSelectConsulta() {
+        /*Esse é o join antigo
         return "select candidato.* from candidato"
                 + " inner join cidade on candidato.cidade=cidade.id";
+        */        
+        
+        return "select candidato.* from candidato"
+                + " inner join cidade on candidato.cidade=cidade.id"
+                + " inner join estado on cidade.estado=estado.id";
     }
 
     @Override
