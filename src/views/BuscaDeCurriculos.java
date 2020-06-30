@@ -50,10 +50,12 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
         cBoxOpcoesBusca1.addItem("Cidade");
         cBoxOpcoesBusca1.addItem("Cargo");
         cBoxOpcoesBusca1.addItem("Escolaridade");
+        cBoxOpcoesBusca1.addItem("Estado");
 
         cBoxOpcoesBusca2.addItem("Cidade");
         cBoxOpcoesBusca2.addItem("Cargo");
         cBoxOpcoesBusca2.addItem("Escolaridade");
+        cBoxOpcoesBusca2.addItem("Estado");
 
         cBoxOpcoesBooleano3.addItem("IGUAL");
         cBoxOpcoesBooleano3.addItem("DIFERENTE DE");

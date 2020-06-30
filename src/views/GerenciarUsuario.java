@@ -86,8 +86,8 @@ public class GerenciarUsuario extends javax.swing.JDialog {
         tfSenha.setEnabled(true);       
         
 
-        tfNome.setText("Digite nome de usuario");
-        tfSenha.setText("Senha de 6 a 10 digitos");
+        //tfNome.setText("Digite nome de usuario");
+        //tfSenha.setText("Senha de 6 a 10 digitos");
 
         cbAcesso.setEnabled(true);
         btOperacao.setText("Cadastrar");

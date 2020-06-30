@@ -59,6 +59,6 @@ public  class LeiaCVS {
             }
         }
     }
-  return -1; 
+  return 6000; 
   }
 }

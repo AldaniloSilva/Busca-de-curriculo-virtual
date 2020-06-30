@@ -41,7 +41,6 @@ public class CidadeMySqlDAO extends MySqlDAO<Cidade> {
         Cidade cid = new Cidade();
 
         try {
-
             cid.setId(rs.getInt("id"));
             cid.setNome(rs.getString("nome"));
             //int idEstado = rs.getInt("estado");          

@@ -21,7 +21,7 @@ public class CandidatoTableModel extends AbstractTableModel {
     ArrayList<Candidato> listaCandidatos;
 
     String[] colunas = {"Nome", "Idade", "Cidade",
-        "Cargo", "Telefone", "Escolaridade","Email"};
+        "Objetivo", "Telefone", "Escolaridade","Email"};
 
     @Override
     public String getColumnName(int column) {

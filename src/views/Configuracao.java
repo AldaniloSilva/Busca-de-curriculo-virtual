@@ -5,8 +5,10 @@
  */
 package views;
 
+import ColetaDados.PDFMain;
 import java.awt.Color;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -224,15 +226,29 @@ public class Configuracao extends javax.swing.JDialog {
             lbMensagem.setText("Pasta configurada!");
             lbMensagem.setForeground(Color.BLUE);
             
-            try {
+            try{ 
                 GerenciaPasta.SalvaCaminhoPasta(caminhoPasta);
             } catch (IOException ex) {
                 Logger.getLogger(Configuracao.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }            
+
+            int resposta=JOptionPane.showOptionDialog(null, "Deseja processar agora os arquivos?", "Atenção", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
             
-
-            JOptionPane.showOptionDialog(null, "Deseja processar agora os arquivos?", "Atenção", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
-
+            
+            if(resposta==0){                
+                String pastaOrigem;
+                try {
+                    pastaOrigem = GerenciaPasta.RetornaCaminhoPasta();
+                    lbMensagem.setText("Carregando arquivos...");
+                    PDFMain.CarregarArquivos(pastaOrigem);
+                    lbMensagem.setText("Arquivos carregados!");
+                } catch (IOException | SQLException ex) {
+                    lbMensagem.setText("Ocorreu um erro!");
+                    //Logger.getLogger(Configuracao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                //Logger.getLogger(Configuracao.class.getName()).log(Level.SEVERE, null, ex);
+    
+            }
         }
 
 

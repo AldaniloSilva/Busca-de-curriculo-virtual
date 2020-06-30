@@ -129,7 +129,6 @@ public class Login extends javax.swing.JFrame {
         });
 
         lbLogin.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        lbLogin.setText("Seus arquivos estão sendo processados...");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,7 +158,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(btnLogar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbLogin)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
@@ -197,15 +196,26 @@ public class Login extends javax.swing.JFrame {
 //                    amostra.setVisible(true);
                                         
                     btnLogar.setEnabled(false);
-                    LoadingDados Teste = new LoadingDados();
-                    Teste.start();
+                    //LoadingDados barraProgresso = new LoadingDados();
+                    //barraProgresso.start();
                     pastaOrigem = GerenciaPasta.RetornaCaminhoPasta();
-                    PDFMain.CarregarArquivos(pastaOrigem);
-                   
+                    
+                    if(!pastaOrigem.equals("")){
+                        PDFMain.CarregarArquivos(pastaOrigem);
+                        //if(barraProgresso.isAlive()){
+                          //  barraProgresso.join(1000);
+                        //}
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(frame, "Pasta origem não configurada!", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+                    }                  
+                                       
 
+                    
                     BuscaDeCurriculos amostra = new BuscaDeCurriculos();
-                    //dispose();
-                    amostra.setVisible(false);
+                    dispose();
+                    amostra.setVisible(true);
+                    
                 }
 
             } else {
@@ -220,9 +230,13 @@ public class Login extends javax.swing.JFrame {
         catch (SQLException ex) {
             JOptionPane.showMessageDialog(frame, ex.getMessage(), "Erro na consulta com banco", JOptionPane.ERROR_MESSAGE);
             //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
+        }catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //JOptionPane.showMessageDialog(frame, ex.getMessage(), "Erro  thread interrompida", JOptionPane.ERROR_MESSAGE);
+        
+        //JOptionPane.showMessageDialog(frame, ex.getMessage(), "Erro  thread interrompida", JOptionPane.ERROR_MESSAGE);
+        
 
 
     }//GEN-LAST:event_btnLogarActionPerformed
@@ -263,6 +277,8 @@ public class Login extends javax.swing.JFrame {
         });
     }
 
+    
+    /*
     public class LoadingDados extends Thread {
 
         public void run() {
@@ -279,17 +295,10 @@ public class Login extends javax.swing.JFrame {
                     sleep(100);
                     jProgressBar1.setValue(i);
                     lbLogin.setText("Carregando os arquivos...");
-//                    if (jProgressBar1.getValue() <= 2) {
-//                        lbLogin.setText("Carregando Sistema ...");
-//                    } else if (jProgressBar1.getValue() <= 50) {
-//                        lbLogin.setText("Carregando banco de dados ...");
-//                    } else if (jProgressBar1.getValue() <= 75) {
-//                        lbLogin.setText("Abrindo as tabelas");
-//                    } else {
-//                        lbLogin.setText("O sistema está sendo iniciado...");
-//                    }
+
 
                 } catch (InterruptedException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -299,6 +308,8 @@ public class Login extends javax.swing.JFrame {
 
         }
     }
+    */
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogar;

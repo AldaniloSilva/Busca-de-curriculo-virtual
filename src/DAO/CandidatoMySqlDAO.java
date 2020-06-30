@@ -5,12 +5,15 @@
  */
 package DAO;
 
+import Enums.EnumComparadorQuery;
 import Enums.EnumOperacao;
+import business.CamposDeClasse;
 import business.Candidato;
 import business.Cidade;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -101,8 +104,25 @@ public class CandidatoMySqlDAO extends MySqlDAO<Candidato> {
         } catch (SQLException ex) {
             Logger.getLogger(CandidatoMySqlDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return can;
+    }
+    
+    public boolean validaSeRepete(Candidato can) throws SQLException{
+        boolean existe=false;
+        ArrayList<CamposDeClasse> camposFiltro=new ArrayList<>();
+        CamposDeClasse campo=new CamposDeClasse();
+        campo.setNomeChave("email");
+        campo.setValorChave(can.getEmail());
+        campo.setComparador(EnumComparadorQuery.IGUAL);
+        campo.setOperadorLogicoE(false);
+        camposFiltro.add(campo);
+        String comando=stringSelectTabelaComFiltro(camposFiltro);
+        Candidato candidatoConsultado = consultaGenerica(comando);
+        if(candidatoConsultado!=null){
+            existe=true;
+        }        
+        
+        return existe; 
     }
 
 }

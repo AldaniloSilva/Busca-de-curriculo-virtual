@@ -53,8 +53,7 @@ public class Validacoes {
             valido = true;
             UsuarioLogado.getInstancia().adicionaUsuario(usuarioConsultado);
         } else {
-            ServicoDeMensagens.mensagem = "Usuário e/ou Senha Inválidos, "
-                    + "solicitar cadastro ao Administrador!";
+            ServicoDeMensagens.mensagem = "Usuário e/ou Senha Inválidos!";
         }
 
         return valido;

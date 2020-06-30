@@ -74,7 +74,7 @@
               <Component id="btnLogar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lbLogin" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
+              <EmptySpace pref="49" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -175,7 +175,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="sansserif" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Seus arquivos est&#xe3;o sendo processados..."/>
       </Properties>
     </Component>
   </SubComponents>

@@ -18,6 +18,9 @@ import ParsingDados.AnalisaCargo;
 import business.Candidato;
 import business.Cidade;
 import DAO.CandidatoMySqlDAO;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,19 +37,15 @@ public class PDFMain {
     }
 
     public static int getLoadMax() {
-        return loadMax; 
+        return loadMax;
     }
 
     public static boolean isFinalizado() {
         return finalizado;
     }
 
-
-
-    public static void CarregarArquivos(String pasta) throws IOException {
+    public static void CarregarArquivos(String pasta) throws IOException, SQLException{
         CandidatoMySqlDAO DAO = new CandidatoMySqlDAO();
-        
-       
 
         //Cria uma lista para receber o retorno da classe PDFReaderFolders
         File[] listaArquivos;
@@ -58,7 +57,7 @@ public class PDFMain {
         ArrayList<Candidato> dados = new ArrayList();
 
         //loadMax = listaArquivos.length;
-          loadMax = 11;
+        loadMax = 300;
 
         for (File listaArquivo : listaArquivos) {
 
@@ -72,28 +71,42 @@ public class PDFMain {
             Candidato candidato = new Candidato();
             Cidade cidade = new Cidade();
             //4. Pega os dados do Candidato
-            candidato.setNome(AnalisaNome.ParsingNome(texto));
-            candidato.setEmail(AnalisaEmail.ParsingEmail(texto));
-            candidato.setTelefone(AnalisaTelefone.ParsingTelefone(texto));
-            candidato.setNome_arquivo(listaArquivo.getName());
+            candidato.setNome(AnalisaNome.ParsingNome(texto).trim());
+            candidato.setEmail(AnalisaEmail.ParsingEmail(texto).trim());
+            candidato.setTelefone(AnalisaTelefone.ParsingTelefone(texto).trim());
+            candidato.setNome_arquivo(listaArquivo.getName().trim());
 
             cidade.setId(AnalisaCidade.ParsingCidade(texto));
             candidato.setCidade(cidade);
 
             candidato.setNascimento(AnalisaIdade.ParsingIdade(texto));
-            candidato.setEscolaridade(AnalisaEscolaridade.ParsingEscolaridade(texto));
+            candidato.setEscolaridade(AnalisaEscolaridade.ParsingEscolaridade(texto).trim());
             candidato.setCargo(AnalisaCargo.ParsingCargo(texto));
 
             //5. Adiciona na lista de Candidado
             dados.add(candidato);
             loadStatus += dados.size();
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(PDFMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
 
         for (Candidato pessoa : dados) {
-            DAO.inserirEntidade(pessoa);
+           
+             boolean jaExiste = DAO.validaSeRepete(pessoa);
+            if (!jaExiste) {
+                DAO.inserirEntidade(pessoa);
+            }
+            else{
+                DAO.alterarEntidade(pessoa.getId(), pessoa);
+            }
+            
+           //DAO.inserirEntidade(pessoa);
         }
-        
+
         finalizado = true;
 
     }
