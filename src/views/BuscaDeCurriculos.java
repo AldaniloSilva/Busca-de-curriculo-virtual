@@ -436,7 +436,6 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
         telaCadastro.setLocationRelativeTo(null);
         telaCadastro.setVisible(true);
 
-
     }//GEN-LAST:event_btnCadastrarUsuarioActionPerformed
 
     /**
@@ -449,8 +448,8 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
             filtro = new CamposDeClasse();
         }
         //alterado em 30/06/2020
-        if (opcaoDeCampo.toLowerCase().equals("cidade")||
-              opcaoDeCampo.toLowerCase().equals("estado")  ) {
+        if (opcaoDeCampo.toLowerCase().equals("cidade")
+                || opcaoDeCampo.toLowerCase().equals("estado")) {
             String chave = ".nome";
             opcaoDeCampo = opcaoDeCampo + chave;
         }
@@ -471,12 +470,20 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
 
     private void preencheJtable(ArrayList<Candidato> lista) {
         //tabela.setco
-        if (lista == null) {
+        /*
+        if (lista.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Não há resultado para pesquisa!",
                     "Atenção", JOptionPane.WARNING_MESSAGE);
         } else {
             modeloTabela.setLista(lista);
             jTableCandidatos.setModel(modeloTabela);
+        }
+         */
+        modeloTabela.setLista(lista);
+        jTableCandidatos.setModel(modeloTabela);
+        if (lista.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Não há resultado para pesquisa!",
+                    "Atenção", JOptionPane.WARNING_MESSAGE);
         }
 
     }

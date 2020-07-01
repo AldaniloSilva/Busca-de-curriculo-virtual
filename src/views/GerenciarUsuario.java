@@ -399,11 +399,16 @@ public class GerenciarUsuario extends javax.swing.JDialog {
             }
 
             if(valido){
-                JOptionPane.showMessageDialog(this, ServicoDeMensagens.getMensagem(), "OK", JOptionPane.OK_OPTION);
+                jLabelStatus.setForeground(Color.GREEN);
+               
+                jLabelStatus.setText("Usuario Cadastrado");
+                //JOptionPane.showMessageDialog(this, ServicoDeMensagens.getMensagem(), "OK", JOptionPane.OK_OPTION);
                 apagarTextBox();
             }
             else{
-                JOptionPane.showMessageDialog(this, ServicoDeMensagens.getMensagem(), "Erro", JOptionPane.ERROR_MESSAGE);
+                jLabelStatus.setForeground(Color.red);
+                jLabelStatus.setText("Dados Incompletos");
+                //JOptionPane.showMessageDialog(this, ServicoDeMensagens.getMensagem(), "Erro", JOptionPane.ERROR_MESSAGE);
             }
             
             
