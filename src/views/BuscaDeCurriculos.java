@@ -404,8 +404,6 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
 
     private void btnBuscaAvancadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaAvancadaActionPerformed
         buscaAvancada = !buscaAvancada;
-//        Icon menos = new ImageIcon("src\\icones\\icons8-menos-40.png");
-//        Icon mais = new ImageIcon("src\\icones\\icons8-mais-2-matemática-40.png");
         Icon menos = new ImageIcon(getClass().getResource("/icones/icons8-menos-40.png"));
         Icon mais = new ImageIcon(getClass().getResource("/icones/icons8-mais-2-matemática-40.png"));
 
@@ -472,15 +470,6 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
 
     private void preencheJtable(ArrayList<Candidato> lista) {
         //tabela.setco
-        /*
-        if (lista.isEmpty()) {
-            JOptionPane.showMessageDialog(frame, "Não há resultado para pesquisa!",
-                    "Atenção", JOptionPane.WARNING_MESSAGE);
-        } else {
-            modeloTabela.setLista(lista);
-            jTableCandidatos.setModel(modeloTabela);
-        }
-         */
         modeloTabela.setLista(lista);
         jTableCandidatos.setModel(modeloTabela);
         if (lista.isEmpty()) {
@@ -543,7 +532,6 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
     private void jTableCandidatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCandidatosMouseClicked
         try {
 
-            //String caminhoPadrao = "C:\\Users\\Alipio\\Desktop\\N2-Ling.Programacao\\N2-Ling.Programacao\\ztestes\\";
             String caminhoPadrao = GerenciaPasta.PastaDestino().getPath();
             if (evt.getClickCount() == 2 && !evt.isConsumed()) {
                 evt.consume();
