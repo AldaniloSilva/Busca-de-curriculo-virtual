@@ -404,8 +404,10 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
 
     private void btnBuscaAvancadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaAvancadaActionPerformed
         buscaAvancada = !buscaAvancada;
-        Icon menos = new ImageIcon("src\\icones\\icons8-menos-40.png");
-        Icon mais = new ImageIcon("src\\icones\\icons8-mais-2-matemática-40.png");
+//        Icon menos = new ImageIcon("src\\icones\\icons8-menos-40.png");
+//        Icon mais = new ImageIcon("src\\icones\\icons8-mais-2-matemática-40.png");
+        Icon menos = new ImageIcon(getClass().getResource("/icones/icons8-menos-40.png"));
+        Icon mais = new ImageIcon(getClass().getResource("/icones/icons8-mais-2-matemática-40.png"));
 
         if (buscaAvancada) {
             //Colocar imagem de "menos"
