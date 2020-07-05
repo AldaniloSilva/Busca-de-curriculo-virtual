@@ -23,12 +23,6 @@ public class MySqlConexao {
 
     public static Connection geraConexao() throws SQLException, IOException {
         ConfiguracaoBanco configuracao = GerenciaPasta.RetornaAcesso();
-//        final String stringConexao = "jdbc:mysql://localhost:3306/projeto_rh?useTimezone=true&serverTimezone=UTC";
-//        final String usuario = "developer";
-//        final String senha = "123456";
-//        final String usuario = "root";
-//        final String senha = "";
-
         final String stringConexao = "jdbc:mysql://" + configuracao.getConexao() + ":3306/projeto_rh?useTimezone=true&serverTimezone=UTC";
         final String usuario = configuracao.getUsuario();
         //final String senha = "";
