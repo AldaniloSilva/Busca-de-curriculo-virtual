@@ -8,6 +8,7 @@ package DAO;
 import Enums.EnumOperacao;
 import business.CamposDeClasse;
 import business.Entidade;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -188,7 +189,7 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
     }
 
 //
-    protected void executaSql(T entidade, EnumOperacao operacao) throws SQLException {
+    protected void executaSql(T entidade, EnumOperacao operacao) throws SQLException, IOException {
         try (Connection conect = MySqlConexao.geraConexao()) {
             String comandoSql = montaStringSql(operacao, listaDeCamposPadrao(entidade));
             try (PreparedStatement params
@@ -211,8 +212,12 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
     public void inserirEntidade(T entidade) {
         try {
             EnumOperacao op = EnumOperacao.INSERIR;
-            //String sql = montaStringSql(op);
-            executaSql(entidade, op);
+            try {
+                //String sql = montaStringSql(op);
+                executaSql(entidade, op);
+            } catch (IOException ex) {
+                Logger.getLogger(MySqlDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
             ServicoDeMensagens.mensagem = getTabela() + " id: " + entidade.getId() + " inserido com sucesso!!";
         } catch (SQLException ex) {
             ServicoDeMensagens.mensagem = "Ocorreu um erro ao inserir! ";
@@ -225,8 +230,12 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
     public void alterarEntidade(int id, T entidade) {
         try {
             EnumOperacao op = EnumOperacao.ALTERAR;
-            //String sql = montaStringSql(op);
-            executaSql(entidade, op);
+            try {
+                //String sql = montaStringSql(op);
+                executaSql(entidade, op);
+            } catch (IOException ex) {
+                Logger.getLogger(MySqlDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
             ServicoDeMensagens.mensagem = getTabela() + " id: " + entidade.getId() + " alterado com sucesso!!";
         } catch (SQLException ex) {
             ServicoDeMensagens.mensagem = "Ocorreu um erro ao alterar! ";
@@ -238,8 +247,12 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
     public void deletarEntidade(int id, T entidade) {
         try {
             EnumOperacao op = EnumOperacao.DELETAR;
-            //String sql = montaStringSql(op);
-            executaSql(entidade, op);
+            try {
+                //String sql = montaStringSql(op);
+                executaSql(entidade, op);
+            } catch (IOException ex) {
+                Logger.getLogger(MySqlDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
             ServicoDeMensagens.mensagem = getTabela() + " id: " + entidade.getId() + " deletado com sucesso!!";
         } catch (SQLException ex) {
             ServicoDeMensagens.mensagem = "Ocorreu um erro ao alterar! ";
@@ -264,6 +277,8 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
             if (!conect.isClosed()) {
                 conect.close();
             }
+        } catch (IOException ex) {
+            Logger.getLogger(MySqlDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return listaEntidades;
@@ -285,6 +300,8 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
             if (!conect.isClosed()) {
                 conect.close();
             }
+        } catch (IOException ex) {
+            Logger.getLogger(MySqlDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return entidade;
     }
@@ -302,6 +319,8 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
             if (!conect.isClosed()) {
                 conect.close();
             }
+        } catch (IOException ex) {
+            Logger.getLogger(MySqlDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return entidade;
     }
@@ -320,6 +339,8 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
             if (!conect.isClosed()) {
                 conect.close();
             }
+        } catch (IOException ex) {
+            Logger.getLogger(MySqlDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return proximo;

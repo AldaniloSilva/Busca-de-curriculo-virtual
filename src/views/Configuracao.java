@@ -6,9 +6,12 @@
 package views;
 
 import ColetaDados.PDFMain;
+import DAO.ConfiguracaoBanco;
 import java.awt.Color;
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -20,8 +23,10 @@ import servicos.GerenciaPasta;
  * @author BRUNOSILVA
  */
 public class Configuracao extends javax.swing.JDialog {
-    String caminhoPasta;
-    
+//    String caminhoPasta;
+
+    File caminhoPasta;
+
     /**
      * Creates new form ConfiguracaoTeste
      */
@@ -29,17 +34,23 @@ public class Configuracao extends javax.swing.JDialog {
         super(parent, modal);
 
         initComponents();
-        jTabbedPane1.setVisible(true);
+        ConfiguracaoBanco configuracao = GerenciaPasta.RetornaAcesso();
+        txtServidor.setText(configuracao.getConexao());
+        txtUserBanco.setText(configuracao.getUsuario());
+        txtSenhaBanco.setText(configuracao.getSenha());
         
-        if(GerenciaPasta.RetornaCaminhoPasta().equals("")){
+        jTabbedPane1.setVisible(true);
+        caminhoPasta = new File(GerenciaPasta.RetornaCaminhoPasta());
+
+        if (GerenciaPasta.RetornaCaminhoPasta().equals("") || !caminhoPasta.exists()) {
             lbMensagem.setText("Nenhuma pasta foi selecionada");
             lbMensagem.setForeground(Color.RED);
-        }else{
-            caminhoPasta = GerenciaPasta.RetornaCaminhoPasta();
-            txtPath.setText(caminhoPasta);            
+        } else {
+            //caminhoPasta = new File (GerenciaPasta.RetornaCaminhoPasta());
+            txtPath.setText(caminhoPasta.getPath());
             lbMensagem.setText("Pasta configurada!");
             lbMensagem.setForeground(Color.BLUE);
-            
+
         }
 
     }
@@ -63,14 +74,22 @@ public class Configuracao extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtServidor = new javax.swing.JTextField();
+        txtUserBanco = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtSenhaBanco = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Configuração");
         setPreferredSize(new java.awt.Dimension(598, 200));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,13 +160,11 @@ public class Configuracao extends javax.swing.JDialog {
 
         jLabel2.setText("Usuário");
 
-        jTextField1.setText("localhost");
+        txtServidor.setText("localhost");
 
-        jTextField2.setText("root");
+        txtUserBanco.setText("developer");
 
         jLabel3.setText("Senha");
-
-        jPasswordField1.setText("jPasswordField1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -159,15 +176,15 @@ public class Configuracao extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtServidor, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(26, 26, 26)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtUserBanco)
+                            .addComponent(txtSenhaBanco))))
                 .addContainerGap(359, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -175,17 +192,17 @@ public class Configuracao extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtServidor, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUserBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8))
+                    .addComponent(txtSenhaBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
         );
 
         jTabbedPane1.addTab("Banco de Dados", jPanel2);
@@ -215,6 +232,7 @@ public class Configuracao extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //Teste Save File Dialog
+        
         JFileChooser pasta = new JFileChooser();
         pasta.setDialogTitle("Escolha a pasta com os currículos");
 
@@ -225,23 +243,22 @@ public class Configuracao extends javax.swing.JDialog {
         Object[] options = {"Sim", "Não"};
 
         if (userSelection == JFileChooser.APPROVE_OPTION) {
-            //File fileToSave = pasta.getSelectedFile();
-            caminhoPasta = pasta.getSelectedFile().toString();
-            txtPath.setText(caminhoPasta);
 
-            //System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+            caminhoPasta = pasta.getSelectedFile();
+            txtPath.setText(caminhoPasta.getPath());
+
             lbMensagem.setText("Pasta configurada!");
             lbMensagem.setForeground(Color.BLUE);
 
-            try{
-                GerenciaPasta.SalvaCaminhoPasta(caminhoPasta);
+            try {
+                GerenciaPasta.SalvaCaminhoPasta(caminhoPasta.getPath());
             } catch (IOException ex) {
                 Logger.getLogger(Configuracao.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            int resposta=JOptionPane.showOptionDialog(null, "Deseja processar agora os arquivos?", "Atenção", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+            int resposta = JOptionPane.showOptionDialog(null, "Deseja processar agora os arquivos?", "Atenção", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
 
-            if(resposta==0){
+            if (resposta == 0) {
                 String pastaOrigem;
                 try {
                     pastaOrigem = GerenciaPasta.RetornaCaminhoPasta();
@@ -257,6 +274,21 @@ public class Configuracao extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        String confAcessoBanco;
+        confAcessoBanco = txtServidor.getText() + "=" + txtUserBanco.getText() + "=" + txtSenhaBanco.getText();
+        try {
+            GerenciaPasta.SalvaDadosAcesso(confAcessoBanco);
+        } catch (IOException ex) {
+            Logger.getLogger(Configuracao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -319,7 +351,9 @@ public class Configuracao extends javax.swing.JDialog {
                 }
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
+
                     public void windowClosing(java.awt.event.WindowEvent e) {
+
                         System.exit(0);
                     }
                 });
@@ -339,11 +373,11 @@ public class Configuracao extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lbMensagem;
     private javax.swing.JTextField txtPath;
+    private static javax.swing.JTextField txtSenhaBanco;
+    private static javax.swing.JTextField txtServidor;
+    private static javax.swing.JTextField txtUserBanco;
     // End of variables declaration//GEN-END:variables
 }

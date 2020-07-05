@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import servicos.ServicoDeMensagens;
 import servicos.Validacoes;
 import ColetaDados.PDFMain;
+import java.io.File;
 import static java.lang.Thread.sleep;
 import servicos.GerenciaPasta;
 
@@ -52,6 +53,7 @@ public class Login extends javax.swing.JFrame {
         txtSenha = new javax.swing.JPasswordField();
         btnLogar = new javax.swing.JButton();
         lbLogin = new javax.swing.JLabel();
+        btnLoginConf = new javax.swing.JButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -66,7 +68,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
-        setPreferredSize(new java.awt.Dimension(392, 260));
+        setPreferredSize(new java.awt.Dimension(392, 290));
 
         lblNome.setText("Nome:");
 
@@ -126,6 +128,13 @@ public class Login extends javax.swing.JFrame {
 
         lbLogin.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
 
+        btnLoginConf.setText("Configurações");
+        btnLoginConf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginConfActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,25 +145,32 @@ public class Login extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(painelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(btnLogar)
+                        .addGap(83, 83, 83)
+                        .addComponent(lbLogin)
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(btnLogar))
+                            .addComponent(btnLoginConf))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(lbLogin)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(painelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnLogar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbLogin)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(lbLogin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLogar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLoginConf)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -172,7 +188,8 @@ public class Login extends javax.swing.JFrame {
 
         usuEnvio.setNome(txtUsuario.getText());
         String valor = new String(txtSenha.getPassword());
-        String pastaOrigem;
+        //String pastaOrigem;
+        File pastaOrigem;
         usuEnvio.setSenha(valor);
         boolean usuarioValido = false;
 
@@ -193,14 +210,14 @@ public class Login extends javax.swing.JFrame {
                     btnLogar.setEnabled(false);
                     //LoadingDados barraProgresso = new LoadingDados();
 
-                    pastaOrigem = GerenciaPasta.RetornaCaminhoPasta();
+                    pastaOrigem = new File (GerenciaPasta.RetornaCaminhoPasta());
                     //barraProgresso.setArq(pastaOrigem);
                     //barraProgresso.start();
 
-                    if (!pastaOrigem.equals("")) {
+                    if (!pastaOrigem.getPath().equals("") && pastaOrigem.exists()) {
                         
 
-                        PDFMain.CarregarArquivos(pastaOrigem);
+                        PDFMain.CarregarArquivos(pastaOrigem.getPath());
 
                         /*
                         if(b.isAlive()){
@@ -236,6 +253,18 @@ public class Login extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnLogarActionPerformed
+
+    private void btnLoginConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginConfActionPerformed
+               try {
+            Configuracao config = new Configuracao(this, true);
+            //this.add
+            config.setLocationRelativeTo(null);
+
+            config.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(BuscaDeCurriculos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnLoginConfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,6 +347,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogar;
+    private javax.swing.JButton btnLoginConf;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JLabel lbLogin;
