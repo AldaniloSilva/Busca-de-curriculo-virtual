@@ -45,11 +45,5 @@ public class Usuario extends Entidade {
     public void setTipoAcesso(EnumTipoAcesso tipoAcesso) {
         this.tipoAcesso = tipoAcesso;
     }
-    
-    
-    
-    
-      
-    
-    
+     
 }

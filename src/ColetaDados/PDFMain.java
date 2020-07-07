@@ -30,11 +30,7 @@ public class PDFMain {
 
     private static int loadStatus;
     private static int loadMax;
-    private static boolean finalizado;
-    //   
-    
-    
-    //    
+    private static boolean finalizado;    
 
     public static int getLoadStatus() {
         return loadStatus;
@@ -93,15 +89,16 @@ public class PDFMain {
                 candidato.setNascimento(AnalisaIdade.ParsingIdade(texto));
                 candidato.setEscolaridade(AnalisaEscolaridade.ParsingEscolaridade(texto).trim());
                 candidato.setCargo(AnalisaCargo.ParsingCargo(texto));
+                //5. Adiciona na lista de Candidado
                 dados.add(candidato);
             } catch (IOException | IllegalStateException e) {
-                //ServicoDeMensagens.mensagem = e.getMessage();
+                
                 System.out.println("Problema: " + arqProblema);
             }
             
 
-            //5. Adiciona na lista de Candidado
-            //loadStatus += dados.size();
+            
+            
             
             try {
                 Thread.sleep(5);
@@ -119,8 +116,7 @@ public class PDFMain {
             } else {
                 DAO.alterarEntidade(pessoa.getId(), pessoa);
             }
-
-            //DAO.inserirEntidade(pessoa);
+            
         }        
        
 

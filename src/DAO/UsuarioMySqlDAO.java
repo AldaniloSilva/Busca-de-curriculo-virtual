@@ -76,7 +76,7 @@ public class UsuarioMySqlDAO extends MySqlDAO<Usuario> {
 
             return usu;
         } catch (SQLException ex) {
-            ServicoDeMensagens.mensagem = ex.getMessage();
+            ServicoDeMensagens.mensagem = "Erro ao montar classe usuário";
             //Logger.getLogger(UsuarioMySqlDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return usu;
@@ -84,28 +84,3 @@ public class UsuarioMySqlDAO extends MySqlDAO<Usuario> {
 
 }
 
-/*
-@Override
-    protected String montaStringSql(EnumOperacao operacao) {
-        String enviaComando = "";
-        switch (operacao) {
-            case INSERIR:
-                enviaComando += "insert into " + getTabela()
-                        + " (nome,senha,tipoAcesso) "
-                        + "values (?,?,?)";
-                break;
-            case ALTERAR:
-                enviaComando += "update " + getTabela()
-                        + " set nome = ?, senha=?, tipoAcesso=?"
-                        + " where id = ?";
-                break;
-
-            case DELETAR:
-                enviaComando += "delete from " + getTabela()
-                        + " where id = ?";
-                break;
-        }
-        return enviaComando;
-    }
-
- */

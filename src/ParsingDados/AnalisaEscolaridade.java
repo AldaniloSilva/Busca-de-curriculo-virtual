@@ -16,8 +16,7 @@ import java.util.regex.Pattern;
  */
 public class AnalisaEscolaridade {
 
-    static boolean achado;
-    //static String modalidade;
+    static boolean achado;    
     static int linhacerta = 0;
 
     public static String ParsingEscolaridade(String texto) {

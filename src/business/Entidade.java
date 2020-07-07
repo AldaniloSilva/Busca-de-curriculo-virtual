@@ -10,10 +10,8 @@ package business;
  * @author BRUNOSILVA
  */
 public abstract class Entidade {
-    private int id;    
+    private int id;       
     
-    
-
     public int getId() {
         return id;
     }

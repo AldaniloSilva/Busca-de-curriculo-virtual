@@ -45,11 +45,10 @@ public class AnalisaCargo {
     }
 
     public static String CapturaCargo(String texto) {
-        //String cargo = "";
+        
         String curriculo[] = texto.split("\n");
         for (int i = linhacerta + 1; i < curriculo.length; i++) {
-            if(!TestaEspaco(curriculo[i]))
-                //cargo += curriculo[i].replace("\r", "");
+            if(!TestaEspaco(curriculo[i]))                
                 return curriculo[i].replace("\r","");
         }
 

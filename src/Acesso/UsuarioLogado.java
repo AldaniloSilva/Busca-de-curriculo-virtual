@@ -45,47 +45,6 @@ public class UsuarioLogado {
     public Usuario retornaDadosUsuario(){        
         return usuario;
     }
-    
-    
-    
-
+   
 }
 
-
-/*
- //---------Inicio do Padrão Singleton---------------    
-
-    //instancia que se auto cria no Singleton
-    private static UsuarioLogadoSing _instancia;
-
-    //Usuario logado no Sistema
-    private Usuario usuario;
-
-    //construtor que adiciona o Usuario
-    public UsuarioLogadoSing(Usuario usuPassado) {
-        this.usuario = usuPassado;
-    }
-
-    //método estático que 'auto cria' a instancia do Singleton
-    public static UsuarioLogadoSing getInstancia() {
-        if (_instancia == null) {
-            _instancia = new UsuarioLogadoSing();
-        }
-
-        return _instancia;
-    }
-    //--------------Fim do Padrão Singleton--------------------
-
-*/
-
-/*
-static Usuario usuario;
-
-    public static Usuario getUsuario() {
-        return usuario;
-    }
-
-    public static void setUsuario(Usuario usuPassado) {
-        UsuarioLogado.usuario = usuPassado;
-    } 
-*/

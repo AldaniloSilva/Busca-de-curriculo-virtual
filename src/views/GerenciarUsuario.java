@@ -10,15 +10,10 @@ import Enums.EnumOperacao;
 import Enums.EnumTipoAcesso;
 import business.Usuario;
 import java.awt.Color;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import servicos.ServicoDeMensagens;
@@ -83,12 +78,8 @@ public class GerenciarUsuario extends javax.swing.JDialog {
         eventoSpIdClicaNaSeta();
 
         tfNome.setEnabled(true);
-        tfSenha.setEnabled(true);       
+        tfSenha.setEnabled(true);      
         
-
-        //tfNome.setText("Digite nome de usuario");
-        //tfSenha.setText("Senha de 6 a 10 digitos");
-
         cbAcesso.setEnabled(true);
         btOperacao.setText("Cadastrar");
         btOperacao.setForeground(Color.BLACK);
@@ -402,13 +393,13 @@ public class GerenciarUsuario extends javax.swing.JDialog {
                 jLabelStatus.setForeground(Color.GREEN);
                
                 jLabelStatus.setText("Usuario Cadastrado");
-                //JOptionPane.showMessageDialog(this, ServicoDeMensagens.getMensagem(), "OK", JOptionPane.OK_OPTION);
+                
                 apagarTextBox();
             }
             else{
                 jLabelStatus.setForeground(Color.red);
                 jLabelStatus.setText("Dados Incompletos");
-                //JOptionPane.showMessageDialog(this, ServicoDeMensagens.getMensagem(), "Erro", JOptionPane.ERROR_MESSAGE);
+                
             }
             
             
@@ -485,52 +476,3 @@ public class GerenciarUsuario extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 }
 
-/*
-     //Evento para pegar quando é clicado na seta do JSpinner
-        ((JSpinner.DefaultEditor) spId.getEditor()).getTextField().addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    
-
-                }
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
-
- */
-
- /*
-spId.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-
-                Usuario usuario = new Usuario();
-                try {
-                    int teste = (int) spId.getValue();
-                    usuario = uDao.consultaPorId(teste);
-                    if (usuario != null) {
-                        tfNome.setText(usuario.getNome());
-                        tfSenha.setText(usuario.getSenha());
-                        cbAcesso.setSelectedItem(usuario.getTipoAcesso().getDescricao());
-                    } else {
-                        tfNome.setText("");
-                        tfSenha.setText("");
-                    }
-
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Id não encontrado");
-                }
-            }
-        });
- */

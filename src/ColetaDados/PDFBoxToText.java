@@ -19,8 +19,7 @@ public class PDFBoxToText {
         //Instancia um objeto da classe PDFManager
         PDFManager pdfManager = new PDFManager();
         
-        //Envia o caminho do arquivo para ser lido
-        //pdfManager.setFilePath("C:\\Users\\Alipio\\Desktop\\N2-Ling.Programacao\\N2-Ling.Programacao\\ztestes\\" + arquivo);
+        //Envia o caminho do arquivo para ser lido       
        
         pdfManager.setFilePath(servicos.GerenciaPasta.PastaDestino().getPath() + "\\" + arquivo);
 

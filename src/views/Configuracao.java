@@ -11,7 +11,6 @@ import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -23,7 +22,6 @@ import servicos.GerenciaPasta;
  * @author BRUNOSILVA
  */
 public class Configuracao extends javax.swing.JDialog {
-//    String caminhoPasta;
 
     File caminhoPasta;
 
@@ -45,8 +43,7 @@ public class Configuracao extends javax.swing.JDialog {
         if (GerenciaPasta.RetornaCaminhoPasta().equals("") || !caminhoPasta.exists()) {
             lbMensagem.setText("Nenhuma pasta foi selecionada");
             lbMensagem.setForeground(Color.RED);
-        } else {
-            //caminhoPasta = new File (GerenciaPasta.RetornaCaminhoPasta());
+        } else {            
             txtPath.setText(caminhoPasta.getPath());
             lbMensagem.setText("Pasta configurada!");
             lbMensagem.setForeground(Color.BLUE);
@@ -151,7 +148,7 @@ public class Configuracao extends javax.swing.JDialog {
                         .addComponent(txtPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbMensagem)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pasta Origem", jPanel3);
@@ -267,10 +264,9 @@ public class Configuracao extends javax.swing.JDialog {
                     lbMensagem.setText("Arquivos carregados!");
                 } catch (IOException | SQLException ex) {
                     lbMensagem.setText("Ocorreu um erro!");
-                    //Logger.getLogger(Configuracao.class.getName()).log(Level.SEVERE, null, ex);
+                    
                 }
-                //Logger.getLogger(Configuracao.class.getName()).log(Level.SEVERE, null, ex);
-
+               
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed

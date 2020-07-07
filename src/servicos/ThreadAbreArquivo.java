@@ -8,8 +8,6 @@ package servicos;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,13 +20,12 @@ public class ThreadAbreArquivo extends Thread{
 
     @Override
     public void run() {
-        try {
-            //if(new File(getArquivo()).exists()){
+        try {            
             Desktop.getDesktop().open(new File(getArquivo()));
-            //}
+            
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Problema ao abrir o arquivo","Erro",JOptionPane.WARNING_MESSAGE);
-            //Logger.getLogger(ThreadAbreArquivo.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         
     }

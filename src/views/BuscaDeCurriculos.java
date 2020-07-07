@@ -62,8 +62,7 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
 
         cBoxOpcoesBooleano4.addItem("IGUAL");
         cBoxOpcoesBooleano4.addItem("DIFERENTE");
-
-        //cBoxOpcoesBooleano5.addItem("");
+        
         cBoxOpcoesBooleano5.addItem("E");
         cBoxOpcoesBooleano5.addItem("OU");
         cBoxOpcoesBooleano5.setVisible(buscaAvancada);
@@ -469,7 +468,7 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
     }
 
     private void preencheJtable(ArrayList<Candidato> lista) {
-        //tabela.setco
+        
         modeloTabela.setLista(lista);
         jTableCandidatos.setModel(modeloTabela);
         if (lista.isEmpty()) {
@@ -523,7 +522,7 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(frame, "Não há resultado para pesquisa!",
                     "Atenção", JOptionPane.WARNING_MESSAGE);
-            //Logger.getLogger(BuscaDeCurriculos.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
 
 
@@ -544,8 +543,7 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
                     Candidato can = new Candidato();
                     can = dao.consultaGenerica(sql);
                     caminhoPadrao += "\\" + can.getNome_arquivo();
-                    //abre o arquivo desejado!!!
-                    //java.awt.Desktop.getDesktop().open(new File(caminhoPadrao));
+                    //abre o arquivo desejado!!!                   
 
                     if (new File(caminhoPadrao).exists()) {
                         ThreadAbreArquivo abreArq = new ThreadAbreArquivo();
@@ -632,79 +630,3 @@ public class BuscaDeCurriculos extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 }
 
-/*
-
-  
-            if (!busca1.isEmpty()) {
-                preencheFiltro(opcaoCampo1, compara1, busca1, param, listaDeFiltros);
-            } else {
-                JOptionPane.showMessageDialog(frame, "txtBusca1 não pode ficar em branco!",
-                        "Atenção", JOptionPane.WARNING_MESSAGE);
-            }
-            
-            if (buscaAvancada) {
-                if (!busca2.isEmpty()) {
-                    param = new CamposDeClasse();
-                    param.setOperadorLogicoE(false);
-                    if (opLogico.equals("E")) {
-                        param.setOperadorLogicoE(true);
-                    }
-                    preencheFiltro(opcaoCampo2, compara2, busca2, param, listaDeFiltros);
-                } else {
-                    JOptionPane.showMessageDialog(frame, "txtBusca2 não pode ficar em branco!",
-                            "Atenção", JOptionPane.WARNING_MESSAGE);
-                    return;
-                }
-            }
- */
- /*
-if (!busca1.isEmpty()) {
-            param = new CamposDeClasse();
-            param.setNomeCampo(opcaoCampo1);
-            param.setValorCampo(busca1);
-            if (compara1.equals("IGUAL")) {
-                param.setIgual(true);
-            } else {
-                param.setIgual(false);
-            }
-        } else {
-            JOptionPane.showMessageDialog(frame, "txtBusca1 não pode ficar em branco!",
-                    "Atenção", JOptionPane.WARNING_MESSAGE);
-        }
- */
-
- /*
- private void preencheFiltro(String opcaoDeCampo, String comparador, String busca,
-            CamposDeClasse filtro, ArrayList<CamposDeClasse> lista) throws SQLException {
-
-        if (filtro == null) {
-            filtro = new CamposDeClasse();
-        }
-        if (opcaoDeCampo.toLowerCase().equals("cidade")) {
-            String chave = "nome";
-            
-            //não está dando certo com o like 
-            //pensar em como resolver
-            CidadeMySqlDAO dao = new CidadeMySqlDAO();
-            String consultaJoin = dao.strSqlParaCidades(chave, busca);
-
-            Cidade cid = dao.consultaGenerica(consultaJoin);
-            busca = Integer.toString(cid.getId());
-        }
-
-        filtro.setNomeChave(opcaoDeCampo);
-        filtro.setValorChave(busca);
-
-        //esta parte ele pega do comboBom o 'IGUAL', mas nesse caso do filtro
-        //a consulta será através de likes
-        if (comparador.equals("IGUAL")) {
-            filtro.setComparador(EnumComparadorQuery.LIKE);
-        } else {
-            filtro.setComparador(EnumComparadorQuery.NOT_LIKE);
-        }
-        //filtro.preparaChave();
-
-        lista.add(filtro);
-    }
-
- */

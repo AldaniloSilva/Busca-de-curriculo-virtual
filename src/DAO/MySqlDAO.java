@@ -68,8 +68,7 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
      * @return //retorna uma string para select total de uma tabela com filtros
      */
     public String stringSelectTabelaComFiltro(ArrayList<CamposDeClasse> camposParaFiltrar) {
-        String comandoSelect = "";
-        //comandoSelect += "select * from " + getTabela();
+        String comandoSelect = "";        
         comandoSelect+=montaSelectConsulta();
 
         for (int n = 0; n < camposParaFiltrar.size(); n++) {
@@ -141,7 +140,8 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
     }
 
     //método para padronizar string sql dos CRUDS independente da classe
-    public String montaStringSql(EnumOperacao operacao, ArrayList<CamposDeClasse> listaDeCampos) throws IllegalArgumentException, IllegalAccessException {
+    public String montaStringSql(EnumOperacao operacao, ArrayList<CamposDeClasse> listaDeCampos) throws IllegalArgumentException
+            , IllegalAccessException {
         ArrayList<CamposDeClasse> listaCampos = listaDeCampos;
 
         String campos = "";

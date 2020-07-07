@@ -20,8 +20,7 @@ import java.util.ArrayList;
  * @author BRUNOSILVA
  */
 public class Validacoes {
-
-    //public static boolean validaCampo
+    
     public static boolean validaUsuarioSenha(Usuario usu) throws IllegalArgumentException,
             IllegalAccessException, SQLException {
 
@@ -38,7 +37,7 @@ public class Validacoes {
                 CamposDeClasse campos = new CamposDeClasse();
                 campos.setNomeChave(" BINARY " + atributo.getName());
                 campos.setValorChave((String) atributo.get(usu));
-                //campos.setIgual(true);
+                
                 campos.setComparador(EnumComparadorQuery.IGUAL);
                 campos.setOperadorLogicoE(true);
 

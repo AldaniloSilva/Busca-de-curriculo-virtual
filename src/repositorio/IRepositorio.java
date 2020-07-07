@@ -7,11 +7,11 @@ package repositorio;
 
 import business.Entidade;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
  *
  * @author BRUNOSILVA
+ * @param <T>
  */
 public interface IRepositorio<T extends Entidade> {    
     
@@ -20,8 +20,7 @@ public interface IRepositorio<T extends Entidade> {
     public void deletarEntidade(int id, T entidade)throws SQLException ;
     public T consultaPorId(int id)throws SQLException ;
     
-    //public T consultaGenerica(String comandoSql)throws SQLException ;
-    //public ArrayList<T> listagemDeEntidade(String strParaSelect)throws SQLException ; 
+    
     
     
 }

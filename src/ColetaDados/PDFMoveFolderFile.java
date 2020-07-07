@@ -21,14 +21,14 @@ public class PDFMoveFolderFile {
             System.out.println("Arquivo não encontrado");
         } else {
             // Diretorio de destino
-            //File diretorioDestino = new File("C:\\Users\\Alipio\\Desktop\\N2-Ling.Programacao\\N2-Ling.Programacao\\ztestes\\");
+            
             File diretorioDestino = GerenciaPasta.PastaDestino();
             
             
 
             
             // Move o arquivo para o novo diretorio
-            //boolean sucesso = arquivo.renameTo(new File(diretorioDestino, arquivo.getName()));
+            
              boolean sucesso = arquivo.renameTo(new File(diretorioDestino , arquivo.getName()));
             if (sucesso) {
                 System.out.println("Arquivo movido para '" + diretorioDestino.getAbsolutePath() + "'");

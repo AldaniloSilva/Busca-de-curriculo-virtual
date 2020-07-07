@@ -34,10 +34,7 @@ public class CandidatoMySqlDAO extends MySqlDAO<Candidato> {
 
     @Override
     protected String montaSelectConsulta() {
-        /*Esse é o join antigo
-        return "select candidato.* from candidato"
-                + " inner join cidade on candidato.cidade=cidade.id";
-        */        
+            
         
         return "select candidato.* from candidato"
                 + " inner join cidade on candidato.cidade=cidade.id"
@@ -91,14 +88,12 @@ public class CandidatoMySqlDAO extends MySqlDAO<Candidato> {
             can.setId(rs.getInt("id"));
             can.setNome(rs.getString("nome"));
             can.setNascimento(rs.getInt("nascimento"));
-
-            //int idCidade=rs.getInt("cidade");
+            
             String idCidade = rs.getString("cidade").trim();
             CidadeMySqlDAO dao = new CidadeMySqlDAO();
             String comando = dao.strSqlParaCidades("id", idCidade);
             Cidade cid = dao.consultaGenerica(comando);
-            //Cidade cid=dao.consultaPorId(idCidade);
-            //can.setCidade_Id(rs.getInt("cidade"));
+            
             can.setCidade(cid);
 
             can.setCargo(rs.getString("cargo"));
@@ -133,76 +128,3 @@ public class CandidatoMySqlDAO extends MySqlDAO<Candidato> {
 
 }
 
-/*
-     @Override
-    protected String montaStringSql(EnumOperacao operacao) {
-        
-        
-        
-        String enviaComando = "";
-        switch (operacao) {
-            case INSERIR:
-                enviaComando += "insert into " + getTabela()
-                        + " (nome,nascimento,cidade,cargo"
-                        + ",telefone,escolaridade,email,nome_arquivo) "
-                        + "values (?,?,?)";
-                break;
-            case ALTERAR:
-                enviaComando += "update " + getTabela()
-                        + " set nome = ?, senha=?, tipoAcesso=?"
-                        + " where id = ?";
-                break;
-
-            case DELETAR:
-                enviaComando += "delete from " + getTabela()
-                        + " where id = ?";
-                break;
-        }
-        return enviaComando;
-
-    }
- */
- /*
-
- @Override
-    protected PreparedStatement adicionaParametros(Candidato entidade
-            , PreparedStatement params
-            , EnumOperacao operacao) throws SQLException {
-        
-        DateFormat formataData = new SimpleDateFormat("yyyy-MM-dd"); 
-        
-        switch (operacao) {
-            case INSERIR:
-                
-                 enviaComando += "insert into " + getTabela()
-                        + " (nome,senha,tipoAcesso) "
-                        + "values (?,?,?)";                
-                
-                params.setString(1, entidade.getNome());
-                params.setString(2, formataData.format(entidade.getNascimento()));
-                params.setString(3, );
-                break;
-                
-            case ALTERAR:
-                
-                enviaComando += "update " + getTabela()
-                        + " set nome = ?, senha=?, tipoAcesso=?"
-                        + " where id = ?";
-                
-                params.setString(1, entidade.getNome());
-                params.setString(2, entidade.getSenha());
-                params.setString(3, entidade.getTipoAcesso().getDescricao());
-                params.setInt(4, entidade.getId()); 
-                break;
-
-            case DELETAR:
-                
-                enviaComando += "delete from " + getTabela()
-                        + " where id = ?";
-                
-                params.setInt(1, entidade.getId());                 
-        }
-        return params;
-         
-    }
- */

@@ -42,63 +42,17 @@ public class CidadeMySqlDAO extends MySqlDAO<Cidade> {
 
         try {
             cid.setId(rs.getInt("id"));
-            cid.setNome(rs.getString("nome"));
-            //int idEstado = rs.getInt("estado");          
+            cid.setNome(rs.getString("nome"));                    
 
             cid.setUf(rs.getString("uf"));
 
             return cid;
         } catch (SQLException ex) {
-            ServicoDeMensagens.mensagem = ex.getMessage();
-            //Logger.getLogger(UsuarioMySqlDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ServicoDeMensagens.mensagem = "Erro na classe cidade";
+            
         }
         return cid;
     }
 
 }
 
-/*
- CamposDeClasse chaves=new CamposDeClasse();
-            ArrayList<CamposDeClasse> listaChaves=new ArrayList<>();
-            chaves.setIgual(true);
-            chaves.setNomeChave("estado");
-            chaves.setValorChave(Integer.toString(idEstado));
-            listaChaves.add(chaves);
-                    
-            ArrayList<String> listaCampos=new ArrayList<>();
-            listaCampos.add("estado.uf");            
-            
-            String comandoSql = stringSelectCamposComFiltro(listaCampos, stringSelectTabelaComFiltro(listaChaves));
-
- */
- /*
-@Override
-    protected PreparedStatement adicionaParametros(Cidade entidade,
-            PreparedStatement params,
-            EnumOperacao operacao) throws SQLException{
-        
-        
-        switch (operacao) {
-            case INSERIR:               
-                
-                params.setString(1, entidade.getNome());
-                params.setString(2, entidade.getSenha());
-                params.setString(3, entidade.getTipoAcesso().getDescricao());
-                break;
-                
-            case ALTERAR:
-              
-                params.setString(1, entidade.getNome());
-                params.setString(2, entidade.getSenha());
-                params.setString(3, entidade.getTipoAcesso().getDescricao());
-                params.setInt(4, entidade.getId()); 
-                break;
-
-            case DELETAR:                
-                params.setInt(1, entidade.getId());                 
-        }
-
-        return params;
-
-    }
-**/

@@ -87,9 +87,7 @@ public class GerenciaPasta {
         if(caminho.length> 2){
             dados.setSenha(caminho[2]);
         }
-
-        
-        //dados.setUsuario(caminho[2]);
+       
 
         return dados;
 

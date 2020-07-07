@@ -3,20 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/B:/PROJETO%20RH/N2-Ling.Programacao/src/DAO/PadraoDAO.java</file>
-            <file>file:/B:/PROJETO%20RH/N2-Ling.Programacao/src/Acesso/ListagemCandidatosSing.java</file>
-            <file>file:/B:/PROJETO%20RH/N2-Ling.Programacao/src/DAO/MySqlConexao.java</file>
-            <file>file:/B:/PROJETO%20RH/N2-Ling.Programacao/src/views/GerenciarUsuario.java</file>
-            <file>file:/B:/PROJETO%20RH/N2-Ling.Programacao/src/views/Login.java</file>
-            <file>file:/B:/PROJETO%20RH/N2-Ling.Programacao/src/DAO/MySqlDAO.java</file>
-            <file>file:/B:/PROJETO%20RH/N2-Ling.Programacao/src/views/Ajuda.java</file>
-            <file>file:/B:/PROJETO%20RH/N2-Ling.Programacao/src/DAO/CidadeMySqlDAO.java</file>
-            <file>file:/B:/PROJETO%20RH/N2-Ling.Programacao/src/views/GerenciaPasta.java</file>
-            <file>file:/B:/PROJETO%20RH/N2-Ling.Programacao/src/DAO/UsuarioMySqlDAO.java</file>
-            <file>file:/B:/PROJETO%20RH/N2-Ling.Programacao/src/icones/icons8-ponto-de-interrogação-64.png</file>
-            <file>file:/B:/PROJETO%20RH/N2-Ling.Programacao/src/views/BuscaDeCurriculos.java</file>
-            <file>file:/B:/PROJETO%20RH/N2-Ling.Programacao/src/DAO/CandidatoMySqlDAO.java</file>
-            <file>file:/B:/PROJETO%20RH/N2-Ling.Programacao/src/views/Configuracao.java</file>
+            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/Busca-de-curriculo-virtual_R03/src/servicos/Validacoes.java</file>
+            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/Busca-de-curriculo-virtual_R03/src/servicos/ServicoDeMensagens.java</file>
+            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/Busca-de-curriculo-virtual_R03/src/views/GerenciarUsuario.java</file>
+            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/Busca-de-curriculo-virtual_R03/src/views/Configuracao.java</file>
+            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/Busca-de-curriculo-virtual_R03/src/views/Login.java</file>
+            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/Busca-de-curriculo-virtual_R03/src/views/BuscaDeCurriculos.java</file>
+            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/Busca-de-curriculo-virtual_R03/src/views/Ajuda.java</file>
+            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/Busca-de-curriculo-virtual_R03/src/repositorio/IRepositorio.java</file>
+            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/Busca-de-curriculo-virtual_R03/src/servicos/GerenciaPasta.java</file>
+            <file>file:/E:/Users/BRUNOSILVA/Desktop/FACULDADE/LINGUAGEM%20DE%20PROGRAMAÇÃO%202/N2-B1_ITENS/Projeto_N2_Alipio_Bruno_Paulo/Busca-de-curriculo-virtual_R03/src/servicos/ThreadAbreArquivo.java</file>
         </group>
     </open-files>
 </project-private>

@@ -6,7 +6,6 @@
 package business;
 
 import Enums.EnumComparadorQuery;
-import java.util.ArrayList;
 
 /**
  *

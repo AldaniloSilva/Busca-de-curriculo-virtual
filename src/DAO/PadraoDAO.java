@@ -6,8 +6,6 @@
 package DAO;
 
 import business.Entidade;
-import java.sql.PreparedStatement;
-import repositorio.IRepositorio;
 
 /**
  *

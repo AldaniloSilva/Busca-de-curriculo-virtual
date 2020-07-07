@@ -5,10 +5,7 @@
  */
 package TableModel;
 
-import Acesso.ListagemCandidatosSing;
-import business.CamposDeClasse;
 import business.Candidato;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 

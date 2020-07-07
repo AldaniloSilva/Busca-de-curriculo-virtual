@@ -11,8 +11,7 @@ package business;
  */
 public class Cidade extends Entidade {
 
-    private String nome;
-    //private int estado;
+    private String nome;    
     private String uf;
 
     public String getNome() {

@@ -201,12 +201,6 @@ public class Login extends javax.swing.JFrame {
                 if (GerenciaPasta.isPastaDestino()) {
                     //Se o usuário for válido pega o caminho configurado e carrega os arquivos no banco
 
-//                    btnLogar.setEnabled(false);
-//                    pastaOrigem = GerenciaPasta.RetornaCaminhoPasta();
-//                    PDFMain.CarregarArquivos(pastaOrigem);
-//                    BuscaDeCurriculos amostra = new BuscaDeCurriculos();
-//                    dispose();
-//                    amostra.setVisible(true);
                     btnLogar.setEnabled(false);
                     //LoadingDados barraProgresso = new LoadingDados();
 
@@ -241,14 +235,15 @@ public class Login extends javax.swing.JFrame {
             }
 
         } catch (IllegalArgumentException | IllegalAccessException ex) {
-            JOptionPane.showMessageDialog(frame, ex.getMessage(), "Erro argumento ilegal", JOptionPane.ERROR_MESSAGE);
-            //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(frame, "Parâmetro inválido!", "Erro argumento ilegal", JOptionPane.ERROR_MESSAGE);
+            
+        } 
         catch (SQLException ex) {
-            JOptionPane.showMessageDialog(frame, ex.getMessage(), "Erro na consulta com banco", JOptionPane.ERROR_MESSAGE);
-            //Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(frame, "Usuário ou senha de conexão inválido!", "Erro na consulta com banco", JOptionPane.ERROR_MESSAGE);
+            
         } catch (IOException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(frame, "Caminho do arquivo não configurado", "Erro no arquivo", JOptionPane.ERROR_MESSAGE);
+            
         }
 
 
@@ -256,8 +251,7 @@ public class Login extends javax.swing.JFrame {
 
     private void btnLoginConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginConfActionPerformed
                try {
-            Configuracao config = new Configuracao(this, true);
-            //this.add
+            Configuracao config = new Configuracao(this, true);            
             config.setLocationRelativeTo(null);
 
             config.setVisible(true);

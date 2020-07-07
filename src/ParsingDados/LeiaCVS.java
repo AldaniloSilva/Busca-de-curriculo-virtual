@@ -21,8 +21,7 @@ public  class LeiaCVS {
     
    
   public static int RetornaCodigoCidade(String uf, String string) throws IOException {
-
-    //String arquivoCSV = "C:\\Users\\Alipio\\Desktop\\Currículos-FTT\\Cidades\\"+ uf + ".csv";
+    
     String arquivoCSV = (new File(".").getCanonicalPath() + "\\Cidades\\" + uf + ".csv");
     BufferedReader br = null;
     String linha;
