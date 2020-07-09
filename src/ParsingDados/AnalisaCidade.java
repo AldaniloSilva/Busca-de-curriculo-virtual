@@ -73,7 +73,9 @@ public class AnalisaCidade {
     public static int ValidaCidadeBanco(String linha) throws IOException {
         Pattern cidadePattern;
         Matcher cidadeMatch;
-        ArrayList<String> estados = new ArrayList<>(Arrays.asList(new String[]{"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"}));
+        ArrayList<String> estados = new ArrayList<>(Arrays.asList(new String[]{"AC", "AL", "AP", "AM", "BA", "CE", 
+            "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", 
+            "RO", "RR", "SC", "SP", "SE", "TO"}));
         for (String uf : estados) {
             cidadePattern = Pattern.compile(uf);
             cidadeMatch = cidadePattern.matcher(linha);
