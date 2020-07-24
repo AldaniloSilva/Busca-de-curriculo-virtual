@@ -27,6 +27,18 @@ public class UsuarioMySqlDAO extends MySqlDAO<Usuario> {
     public UsuarioMySqlDAO() {
         setTabela("usuario");
     }
+	
+	
+	@Override
+    protected String montaSelectSimplesPorId() {        
+        return "select id,nome,CAST(AES_DECRYPT(senha,'rh') AS char(20)) as senha,tipoAcesso from " + getTabela()+" where id=?"; 
+    }
+    
+    @Override
+    protected String montaSelectConsulta() {        
+        return "select id,nome,CAST(AES_DECRYPT(senha,'rh') AS char(20)) as senha,tipoAcesso from " + getTabela();
+        
+    }
 
     @Override
     protected PreparedStatement adicionaParametrosNoBanco(Usuario entidade,

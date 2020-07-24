@@ -53,8 +53,7 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
 
     }
 
-    
-    public String montaSelectSimplesPorId() {
+    protected String montaSelectSimplesPorId() {
         return "select * from " + getTabela() + " where id=?";
     }
 
@@ -68,15 +67,15 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
      * @return //retorna uma string para select total de uma tabela com filtros
      */
     public String stringSelectTabelaComFiltro(ArrayList<CamposDeClasse> camposParaFiltrar) {
-        String comandoSelect = "";        
-        comandoSelect+=montaSelectConsulta();
+        String comandoSelect = "";
+        comandoSelect += montaSelectConsulta();
 
         for (int n = 0; n < camposParaFiltrar.size(); n++) {
             CamposDeClasse cc = camposParaFiltrar.get(n);
             String operador = "";
-            String opLogico = ""; 
-            operador=cc.getComparador().getDescricao();            
-            
+            String opLogico = "";
+            operador = cc.getComparador().getDescricao();
+
             if (cc.isOperadorLogicoE()) {
                 opLogico = " and ";
             } else {
@@ -88,22 +87,23 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
                 comandoSelect += " where " + cc.getNomeChave() + operador + cc.getValorChave();
 
             } else {
-                comandoSelect += opLogico + cc.getNomeChave() + operador +  cc.getValorChave();
+                comandoSelect += opLogico + cc.getNomeChave() + operador + cc.getValorChave();
             }
-        }       
-        
+        }
+
         return comandoSelect;
     }
 
     /**
      * pega a string de select total de uma tabela, e substitui o asterisco (*)
      * pelos campos que se deseja selecionar
+     *
      * @param camposDaTabela
      * @param retornoStringSelectTabelaComFiltro
      * @return
      */
     public String stringSelectCamposComFiltro(ArrayList<String> camposDaTabela,
-             String retornoStringSelectTabelaComFiltro) {
+            String retornoStringSelectTabelaComFiltro) {
 
         String comandoSelect = "";
         comandoSelect = retornoStringSelectTabelaComFiltro;
@@ -117,8 +117,8 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
                 campos += camposDaTabela.get(n);
             }
         }
-        
-        String replaceCampos = comandoSelect.replace("*",campos);
+
+        String replaceCampos = comandoSelect.replace("*", campos);
 
         return replaceCampos;
     }
@@ -132,7 +132,7 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
                 CamposDeClasse campos = new CamposDeClasse();
                 campos.setNomeChave(atributo.getName());
                 listaCampos.add(campos);
-                
+
             }
         }
         return listaCampos;
@@ -140,8 +140,8 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
     }
 
     //método para padronizar string sql dos CRUDS independente da classe
-    public String montaStringSql(EnumOperacao operacao, ArrayList<CamposDeClasse> listaDeCampos) throws IllegalArgumentException
-            , IllegalAccessException {
+    public String montaStringSql(EnumOperacao operacao, ArrayList<CamposDeClasse> listaDeCampos) throws IllegalArgumentException,
+             IllegalAccessException {
         ArrayList<CamposDeClasse> listaCampos = listaDeCampos;
 
         String campos = "";
@@ -151,28 +151,47 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
         switch (operacao) {
             case INSERIR:
                 for (int n = 0; n < listaCampos.size(); n++) {
+                    String aux = "";
+
                     if (n != listaCampos.size() - 1) {
                         campos += listaCampos.get(n).getNomeChave() + ",";
-                        valores += "?" + ",";
+                        aux = "?" + ",";
 
                     } else {
                         campos += listaCampos.get(n).getNomeChave();
-                        valores += "?";
+                        aux = "?";
                     }
+                    //verifica se é o campo senha para encriptar os dados no banco.
+                    //Encriptação do tipo AES
+                    if (listaCampos.get(n).getNomeChave().toLowerCase().equals("senha")) {
+                        String crip = "";
+                        crip = aux.replace("?", " aes_encrypt(?,'rh') ");
+                        aux = crip;
+                    }
+                    valores += aux;
                 }
                 enviaComando += "insert into " + getTabela() + " "
                         + "(" + campos + ")" + " values " + "(" + valores + ")";
-
                 break;
             case ALTERAR:
                 for (int n = 0; n < listaCampos.size(); n++) {
+                    String aux = "";
                     if (n != listaCampos.size() - 1) {
-                        campos += listaCampos.get(n).getNomeChave() + " = ?, ";
+                        aux = listaCampos.get(n).getNomeChave() + " = ?, ";
 
                     } else {
-                        campos += listaCampos.get(n).getNomeChave() + " = ?";
+                        aux = listaCampos.get(n).getNomeChave() + " = ?";
                     }
+                    //verifica se é o campo senha para encriptar os dados no banco.
+                    //Encriptação do tipo AES
+                    if (listaCampos.get(n).getNomeChave().toLowerCase().equals("senha")) {
+                        String crip = "";
+                        crip = aux.replace("?", " aes_encrypt(?,'rh') ");
+                        aux = crip;
+                    }
+                    campos += aux;
                 }
+
                 enviaComando += "update " + getTabela() + " set "
                         + campos + " where id = ?";
                 break;
@@ -212,15 +231,15 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
     public void inserirEntidade(T entidade) {
         try {
             EnumOperacao op = EnumOperacao.INSERIR;
-            try {
-                //String sql = montaStringSql(op);
-                executaSql(entidade, op);
-            } catch (IOException ex) {
-                Logger.getLogger(MySqlDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+            //String sql = montaStringSql(op);
+            executaSql(entidade, op);
+
             ServicoDeMensagens.mensagem = getTabela() + " id: " + entidade.getId() + " inserido com sucesso!!";
         } catch (SQLException ex) {
             ServicoDeMensagens.mensagem = "Ocorreu um erro ao inserir! ";
+        } catch (IOException ex) {
+            ServicoDeMensagens.mensagem = "Arquivo inválido no insert! ";
             //Logger.getLogger(MySqlDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -230,34 +249,35 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
     public void alterarEntidade(int id, T entidade) {
         try {
             EnumOperacao op = EnumOperacao.ALTERAR;
-            try {
-                //String sql = montaStringSql(op);
-                executaSql(entidade, op);
-            } catch (IOException ex) {
-                Logger.getLogger(MySqlDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+            //String sql = montaStringSql(op);
+            executaSql(entidade, op);
+
             ServicoDeMensagens.mensagem = getTabela() + " id: " + entidade.getId() + " alterado com sucesso!!";
         } catch (SQLException ex) {
             ServicoDeMensagens.mensagem = "Ocorreu um erro ao alterar! ";
             //Logger.getLogger(MySqlDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            ServicoDeMensagens.mensagem = "Arquivo inválido no update! ";
+
         }
+
     }
 
     @Override
     public void deletarEntidade(int id, T entidade) {
         try {
             EnumOperacao op = EnumOperacao.DELETAR;
-            try {
-                //String sql = montaStringSql(op);
-                executaSql(entidade, op);
-            } catch (IOException ex) {
-                Logger.getLogger(MySqlDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
+            executaSql(entidade, op);
+
             ServicoDeMensagens.mensagem = getTabela() + " id: " + entidade.getId() + " deletado com sucesso!!";
         } catch (SQLException ex) {
-            ServicoDeMensagens.mensagem = "Ocorreu um erro ao alterar! ";
-            //Logger.getLogger(MySqlDAO.class.getName()).log(Level.SEVERE, null, ex);
+            ServicoDeMensagens.mensagem = "Ocorreu um erro ao alterar! ";            
+        } catch (IOException ex) {
+            ServicoDeMensagens.mensagem = "Arquivo inválido na exclusão! ";
         }
+
     }
 
     //Faz listagem de dados usando o select enviado
@@ -306,6 +326,7 @@ public abstract class MySqlDAO<T extends Entidade> extends PadraoDAO<T> implemen
         return entidade;
     }
 
+    //Faz uma consulta com um comando select qualquer
     public T consultaGenerica(String comandoSql) throws SQLException {
         T entidade = null;
         try (Connection conect = MySqlConexao.geraConexao()) {

@@ -19,6 +19,8 @@ public class UsuarioLogado {
 
     //Usuario logado no Sistema
     private Usuario usuario;
+    
+    boolean primeiroAcesso=false;
 
     //construtor privado 
     private UsuarioLogado() {
@@ -44,6 +46,14 @@ public class UsuarioLogado {
     
     public Usuario retornaDadosUsuario(){        
         return usuario;
+    }
+    
+    public boolean isPrimeiroAcesso() {
+        return primeiroAcesso;
+    }
+
+    public void setPrimeiroAcesso(boolean primeiroAcesso) {
+        this.primeiroAcesso = primeiroAcesso;
     }
    
 }

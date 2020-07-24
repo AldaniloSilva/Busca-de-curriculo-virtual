@@ -33,14 +33,25 @@ public class Validacoes {
             atributo.setAccessible(true);
             if (!atributo.getName().toLowerCase().equals("id")
                     && !atributo.getName().toLowerCase().equals("tipoacesso")) {
-
                 CamposDeClasse campos = new CamposDeClasse();
-                campos.setNomeChave(" BINARY " + atributo.getName());
-                campos.setValorChave((String) atributo.get(usu));
                 
+                String valChave = "";
+				//verifica se é o campo senha para encriptar
+                if (atributo.getName().toLowerCase().equals("senha")) {
+                    campos.setNomeChave(" BINARY " + "CAST(AES_DECRYPT(" + atributo.getName() + ",'rh') AS char(20)) ");
+                    
+                } else {
+                    campos.setNomeChave(" BINARY " + atributo.getName());
+                }                
+                if (usu.getNome().equals("admin") && usu.getSenha().equals("admin")) {
+                    UsuarioLogado.getInstancia().setPrimeiroAcesso(true);
+                }
+
+                valChave = (String) atributo.get(usu);
+                campos.setValorChave(valChave);
                 campos.setComparador(EnumComparadorQuery.IGUAL);
                 campos.setOperadorLogicoE(true);
-
+                
                 camposParaFiltro.add(campos);
             }
         }

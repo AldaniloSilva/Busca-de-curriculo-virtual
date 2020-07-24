@@ -5,6 +5,7 @@
  */
 package views;
 
+import Acesso.UsuarioLogado;
 import business.Usuario;
 import java.awt.Component;
 import java.io.IOException;
@@ -198,18 +199,22 @@ public class Login extends javax.swing.JFrame {
             GerenciaPasta.PastaDestino();
 
             if (usuarioValido) {
+                if (UsuarioLogado.getInstancia().isPrimeiroAcesso()) {
+                    ServicoDeMensagens.mensagem = "Esse é o primeiro acesso! Favor alterar usuário 'admin' ";
+                    JOptionPane.showMessageDialog(frame, ServicoDeMensagens.getMensagem(), "Atenção", JOptionPane.INFORMATION_MESSAGE);
+                }
+
                 if (GerenciaPasta.isPastaDestino()) {
                     //Se o usuário for válido pega o caminho configurado e carrega os arquivos no banco
 
                     btnLogar.setEnabled(false);
                     //LoadingDados barraProgresso = new LoadingDados();
 
-                    pastaOrigem = new File (GerenciaPasta.RetornaCaminhoPasta());
+                    pastaOrigem = new File(GerenciaPasta.RetornaCaminhoPasta());
                     //barraProgresso.setArq(pastaOrigem);
                     //barraProgresso.start();
 
                     if (!pastaOrigem.getPath().equals("") && pastaOrigem.exists()) {
-                        
 
                         PDFMain.CarregarArquivos(pastaOrigem.getPath());
 
@@ -222,11 +227,10 @@ public class Login extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(frame, "Pasta origem não configurada!", "Atenção", JOptionPane.INFORMATION_MESSAGE);
                     }
 
-                    
                     BuscaDeCurriculos amostra = new BuscaDeCurriculos();
                     dispose();
                     amostra.setVisible(true);
-                     
+
                 }
 
             } else {
@@ -236,22 +240,21 @@ public class Login extends javax.swing.JFrame {
 
         } catch (IllegalArgumentException | IllegalAccessException ex) {
             JOptionPane.showMessageDialog(frame, "Parâmetro inválido!", "Erro argumento ilegal", JOptionPane.ERROR_MESSAGE);
-            
-        } 
-        catch (SQLException ex) {
+
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(frame, "Usuário ou senha de conexão inválido!", "Erro na consulta com banco", JOptionPane.ERROR_MESSAGE);
-            
+
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(frame, "Caminho do arquivo não configurado", "Erro no arquivo", JOptionPane.ERROR_MESSAGE);
-            
+
         }
 
 
     }//GEN-LAST:event_btnLogarActionPerformed
 
     private void btnLoginConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginConfActionPerformed
-               try {
-            Configuracao config = new Configuracao(this, true);            
+        try {
+            Configuracao config = new Configuracao(this, true);
             config.setLocationRelativeTo(null);
 
             config.setVisible(true);
